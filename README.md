@@ -1,5 +1,6 @@
-# Oddball paradigm for fMRI
-We're developping an auditory oddball paradigm optimized for neuroimaging experiments. The oddballs will be expressed as timing and/or frequency deviants in tone sequences. We're working on python code that can be  used in cognitive neuroscience research, ensuring high-degree of precision, customization, and ease of use.
+# Sequence Selection
+We developed 13 functional MRI sequences that we are comparing in their ability to record brain signals from subcortical auditory areas.
 
-# Project Goals
-Develop an open-source python-based module for implementing an auditory oddball paradigm for cognitive neuroscience research.
+## Project Goals
+1. Select functional EPI sequence with parameters optimzed for data collection from subcortical brain regions.
+2. Implement and evaluate use of denosing methods: NORDIC & TAPAS
