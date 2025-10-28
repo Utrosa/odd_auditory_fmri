@@ -1,0 +1,825 @@
+{
+    "descriptions": [
+        {
+            "datatype": "anat",
+            "suffix": "MP2RAGE",
+            "custom_entities": "inv-1",
+            "criteria": {
+                "SeriesDescription": "t1_mp2rage_sag_p3_1iso_INV1",
+                "EchoTime": 0.00298
+            }
+        },
+
+            {
+            "datatype": "anat",
+            "suffix": "UNIT1",
+            "criteria": {
+                "SeriesDescription": "t1_mp2rage_sag_p3_1iso_UNI_Images",
+                "EchoTime": 0.00298
+            }
+        },
+        
+            {
+            "datatype": "anat",
+            "suffix": "MP2RAGE",
+            "custom_entities": "inv-2",
+            "criteria": {
+                "SeriesDescription": "t1_mp2rage_sag_p3_1iso_INV2",
+                "EchoTime": 0.00298
+            }
+        },
+
+            {
+            "id": "id_task-localizer_acq-DresdenNoFat",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-DresdenNoFat",
+            "criteria": {
+                "SeriesDescription": "Dresden_1.5mm_SMS1_TR2100_noFatSat"
+            }
+        },
+            {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-DresdenNoFat_dir-AP",
+            "criteria": {
+                "SeriesDescription": "SE_AP_Dresden_1.5mm_SMS1_TR2100"
+            },
+            "sidecar_changes": {
+                "IntendedFor": "id_task-localizer_acq-DresdenNoFat"
+            }
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-DresdenNoFat_dir-PA",
+            "criteria": {
+                "SeriesDescription": "SE_PA_Dresden_1.5mm_SMS1_TR2100"
+            },
+            "sidecar_changes": {
+                "IntendedFor": "id_task-localizer_acq-DresdenNoFat"
+            }
+        },
+            {
+            "id": "id_task-localizer_acq-DresdenWFat",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-DresdenWFat",
+            "criteria": {
+                "SeriesDescription": "Dresden_1.5mm_SMS1_TR2400_wFatSat"
+            }
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-DresdenWFat_dir-AP",
+            "criteria": {
+                "SeriesDescription": "SE_AP_Dresden_1.5mm_SMS1_TR2400"
+            },
+            "sidecar_changes": {
+                "IntendedFor": "id_task-localizer_acq-DresdenWFat"
+            }
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-DresdenWFat_dir-PA",
+            "criteria": {
+                "SeriesDescription": "SE_PA_Dresden_1.5mm_SMS1_TR2400"
+            },
+            "sidecar_changes": {
+                "IntendedFor": "id_task-localizer_acq-DresdenWFat"
+            }
+        },
+            {
+            "id": "id_task-localizer_acq-ME1TR880_echo-01",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-ME1TR880_echo-01",
+            "criteria": {
+                "SeriesDescription": "ME1_1.5mm_SMS2_TR880"
+            }
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-ME1TR880_dir-AP",
+            "criteria": {
+                "SeriesDescription": "SE_AP_ME1_1.5mm_SMS2_TR880"
+            },
+            "sidecar_changes": {
+                "IntendedFor": "id_task-localizer_acq-ME1TR880_echo-01"
+            }
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-ME1TR880_dir-PA",
+            "criteria": {
+                "SeriesDescription": "SE_PA_ME1_1.5mm_SMS2_TR880"
+            },
+            "sidecar_changes": {
+                "IntendedFor": "id_task-localizer_acq-ME1TR880_echo-01"
+            }            
+        },
+        {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME1TR880_echo-01",
+            "criteria": {
+                "SeriesDescription": "ME1_1.5mm_SMS2_TR880_SBRef"
+            }
+        },
+            {
+            "id": "id_task-localizer_acq-ME3TR1600_echo-01",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-ME3TR1600_echo-01",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS2_1.5mm_TR1600",
+                "EchoNumber": 1
+            }
+        },
+        {
+            "id": "id_task-localizer_acq-ME3TR1600_echo-02",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-ME3TR1600_echo-02",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS2_1.5mm_TR1600",
+                "EchoNumber": 2
+            }
+        },
+        {
+            "id": "id_task-localizer_acq-ME3TR1600_echo-03",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-ME3TR1600_echo-03",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS2_1.5mm_TR1600",
+                "EchoNumber": 3
+            }
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-ME3TR1600_dir-AP",
+            "criteria": {
+                "SeriesDescription": "SE_AP_ME3_SMS2_1.5mm_TR1600"
+            },
+            "sidecar_changes": {
+                "IntendedFor": ["id_task-localizer_acq-ME3TR1600_echo-01",
+                                "id_task-localizer_acq-ME3TR1600_echo-02",
+                                "id_task-localizer_acq-ME3TR1600_echo-03"]
+            }   
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-ME3TR1600_dir-PA",
+            "criteria": {
+                "SeriesDescription": "SE_PA_ME3_SMS2_1.5mm_TR1600"
+            },
+             "sidecar_changes": {
+                "IntendedFor": ["id_task-localizer_acq-ME3TR1600_echo-01",
+                                "id_task-localizer_acq-ME3TR1600_echo-02",
+                                "id_task-localizer_acq-ME3TR1600_echo-03"]
+            }  
+        },
+        {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME3TR1600_echo-01",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS2_1.5mm_TR1600_SBRef",
+                "EchoNumber": 1
+            }
+        },
+        {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME3TR1600_echo-02",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS2_1.5mm_TR1600_SBRef",
+                "EchoNumber": 2
+            }
+        },
+        {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME3TR1600_echo-03",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS2_1.5mm_TR1600_SBRef",
+                "EchoNumber": 3
+            }
+        },
+            {
+            "id": "id_task-localizer_acq-ME3TR1100_echo-01",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-ME3TR1100_echo-01",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS3_1.5mm_TR1100",
+                "EchoNumber": 1
+            }
+        },
+            {
+            "id": "id_task-localizer_acq-ME3TR1100_echo-02",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-ME3TR1100_echo-02",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS3_1.5mm_TR1100",
+                "EchoNumber": 2
+            }
+        },
+            {
+            "id": "id_task-localizer_acq-ME3TR1100_echo-03",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-ME3TR1100_echo-03",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS3_1.5mm_TR1100",
+                "EchoNumber": 3
+            }
+        },
+            {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-ME3TR1100_dir-AP",
+            "criteria": {
+                "SeriesDescription": "SE_AP_ME3_SMS3_1.5mm_TR1100"
+            },
+            "sidecar_changes": {
+                "IntendedFor": ["id_task-localizer_acq-ME3TR1100_echo-01",
+                                "id_task-localizer_acq-ME3TR1100_echo-02",
+                                "id_task-localizer_acq-ME3TR1100_echo-03"]
+            }   
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-ME3TR1100_dir-PA",
+            "criteria": {
+                "SeriesDescription": "SE_PA_ME3_SMS3_1.5mm_TR1100"
+            },
+             "sidecar_changes": {
+                "IntendedFor": ["id_task-localizer_acq-ME3TR1100_echo-01",
+                                "id_task-localizer_acq-ME3TR1100_echo-02",
+                                "id_task-localizer_acq-ME3TR1100_echo-03"]
+            }  
+        },
+            {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME3TR1100_echo-01",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS3_1.5mm_TR1100_SBRef",
+                "EchoNumber": 1
+            }
+        },
+        {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME3TR1100_echo-02",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS3_1.5mm_TR1100_SBRef",
+                "EchoNumber": 2
+            }
+        },
+        {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME3TR1100_echo-03",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS3_1.5mm_TR1100_SBRef",
+                "EchoNumber": 3
+            }
+        },
+        {
+            "id": "id_task-localizer_acq-ME3TR850_echo-01",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-ME3TR850_echo-01",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS4_1.5mm_TR850",
+                "EchoNumber": 1
+            }
+        },
+            {
+            "id": "id_task-localizer_acq-ME3TR850_echo-02",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-ME3TR850_echo-02",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS4_1.5mm_TR850",
+                "EchoNumber": 2
+            }
+        },
+            {
+            "id": "id_task-localizer_acq-ME3TR850_echo-03",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-ME3TR850_echo-03",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS4_1.5mm_TR850",
+                "EchoNumber": 3
+            }
+        },
+            {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-ME3TR850_dir-AP",
+            "criteria": {
+                "SeriesDescription": "SE_AP_ME3_SMS4_1.5mm_TR850"
+            },
+            "sidecar_changes": {
+                "IntendedFor": ["id_task-localizer_acq-ME3TR850_echo-01",
+                                "id_task-localizer_acq-ME3TR850_echo-02",
+                                "id_task-localizer_acq-ME3TR850_echo-03"]
+            }   
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-ME3TR850_dir-PA",
+            "criteria": {
+                "SeriesDescription": "SE_PA_ME3_SMS4_1.5mm_TR850"
+            },
+             "sidecar_changes": {
+                "IntendedFor": ["id_task-localizer_acq-ME3TR850_echo-01",
+                                "id_task-localizer_acq-ME3TR850_echo-02",
+                                "id_task-localizer_acq-ME3TR850_echo-03"]
+            }  
+        },
+            {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME3TR850_echo-01",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS4_1.5mm_TR850_SBRef",
+                "EchoNumber": 1
+            }
+        },
+        {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME3TR850_echo-02",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS4_1.5mm_TR850_SBRef",
+                "EchoNumber": 2
+            }
+        },
+        {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME3TR850_echo-03",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS4_1.5mm_TR850_SBRef",
+                "EchoNumber": 3
+            }
+        },
+        {
+            "id": "id_task-localizer_acq-ME3TR700_echo-01",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-ME3TR700_echo-01",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS5_1.5mm_TR700",
+                "EchoNumber": 1
+            }
+        },
+            {
+            "id": "id_task-localizer_acq-ME3TR700_echo-02",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-ME3TR700_echo-02",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS5_1.5mm_TR700",
+                "EchoNumber": 2
+            }
+        },
+            {
+            "id": "id_task-localizer_acq-ME3TR700_echo-03",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-ME3TR700_echo-03",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS5_1.5mm_TR700",
+                "EchoNumber": 3
+            }
+        },
+            {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-ME3TR700_dir-AP",
+            "criteria": {
+                "SeriesDescription": "SE_AP_ME3_SMS5_1.5mm_TR700"
+            },
+            "sidecar_changes": {
+                "IntendedFor": ["id_task-localizer_acq-ME3TR700_echo-01",
+                                "id_task-localizer_acq-ME3TR700_echo-02",
+                                "id_task-localizer_acq-ME3TR700_echo-03"]
+            }   
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-ME3TR700_dir-PA",
+            "criteria": {
+                "SeriesDescription": "SE_PA_ME3_SMS5_1.5mm_TR700"
+            },
+             "sidecar_changes": {
+                "IntendedFor": ["id_task-localizer_acq-ME3TR700_echo-01",
+                                "id_task-localizer_acq-ME3TR700_echo-02",
+                                "id_task-localizer_acq-ME3TR700_echo-03"]
+            }  
+        },
+            {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME3TR700_echo-01",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS5_1.5mm_TR700_SBRef",
+                "EchoNumber": 1
+            }
+        },
+        {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME3TR700_echo-02",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS5_1.5mm_TR700_SBRef",
+                "EchoNumber": 2
+            }
+        },
+        {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME3TR700_echo-03",
+            "criteria": {
+                "SeriesDescription": "ME3_SMS5_1.5mm_TR700_SBRef",
+                "EchoNumber": 3
+            }
+        },
+                    {
+            "id": "id_task-localizer_acq-DresdenNoFat175",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-DresdenNoFat175",
+            "criteria": {
+                "SeriesDescription": "Dresden_1.75mm_SMS1_TR1640_noFatSat"
+            }
+        },
+            {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-DresdenNoFat175_dir-AP",
+            "criteria": {
+                "SeriesDescription": "SE_AP_Dresden_1.75mm_SMS1_TR1640"
+            },
+            "sidecar_changes": {
+                "IntendedFor": "id_task-localizer_acq-DresdenNoFat175"
+            }
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-DresdenNoFat175_dir-PA",
+            "criteria": {
+                "SeriesDescription": "SE_PA_Dresden_1.75mm_SMS1_TR1640"
+            },
+            "sidecar_changes": {
+                "IntendedFor": "id_task-localizer_acq-DresdenNoFat175"
+            }
+        },
+        {
+            "id": "id_task-localizer_acq-DresdenWFat175",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-DresdenWFat175",
+            "criteria": {
+                "SeriesDescription": "Dresden_1.75mm_SMS1_TR1820_wFatSat"
+            }
+        },
+            {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-DresdenWFat175_dir-AP",
+            "criteria": {
+                "SeriesDescription": "SE_AP_Dresden_1.75mm_SMS1_TR1820_wFatSat"
+            },
+            "sidecar_changes": {
+                "IntendedFor": "id_task-localizer_acq-DresdenWFat175"
+            }
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-DresdenWFat175_dir-PA",
+            "criteria": {
+                "SeriesDescription": "SE_PA_Dresden_1.75mm_SMS1_TR1820_wFatSat"
+            },
+            "sidecar_changes": {
+                "IntendedFor": "id_task-localizer_acq-DresdenWFat175"
+            }
+        },
+        {
+            "id": "id_task-localizer_acq-ME1TR780_echo-01",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-ME1TR780_echo-01",
+            "criteria": {
+                "SeriesDescription": "ME1_1.75mm_SMS2_TR780"
+            }
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-ME1TR780_dir-AP",
+            "criteria": {
+                "SeriesDescription": "SE_AP_ME1_1.75mm_SMS2_TR780"
+            },
+            "sidecar_changes": {
+                "IntendedFor": "id_task-localizer_acq-ME1TR780_echo-01"
+            }
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-ME1TR780_dir-PA",
+            "criteria": {
+                "SeriesDescription": "SE_PA_ME1_1.75mm_SMS2_TR780"
+            },
+            "sidecar_changes": {
+                "IntendedFor": "id_task-localizer_acq-ME1TR780_echo-01"
+            }            
+        },
+        {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME1TR780_echo-01",
+            "criteria": {
+                "SeriesDescription": "ME1_1.75mm_SMS2_TR780_SBRef"
+            }
+        },
+        {
+            "id": "id_task-localizer_acq-ME3TR1180_echo-01",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-ME3TR1180_echo-01",
+            "criteria": {
+                "SeriesDescription": "ME3_1.75mm_SMS2_TR1180",
+                "EchoNumber": 1
+            }
+        },
+        {
+            "id": "id_task-localizer_acq-ME3TR1180_echo-02",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-ME3TR1180_echo-02",
+            "criteria": {
+                "SeriesDescription": "ME3_1.75mm_SMS2_TR1180",
+                "EchoNumber": 2
+            }
+        },
+        {
+            "id": "id_task-localizer_acq-ME3TR1180_echo-03",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-ME3TR1180_echo-03",
+            "criteria": {
+                "SeriesDescription": "ME3_1.75mm_SMS2_TR1180",
+                "EchoNumber": 3
+            }
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-ME3TR1180_dir-AP",
+            "criteria": {
+                "SeriesDescription": "SE_AP_ME3_1.75mm_SMS2_TR1180"
+            },
+            "sidecar_changes": {
+                "IntendedFor": ["id_task-localizer_acq-ME3TR1180_echo-01",
+                                "id_task-localizer_acq-ME3TR1180_echo-02",
+                                "id_task-localizer_acq-ME3TR1180_echo-03"]
+            }   
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-ME3TR1180_dir-PA",
+            "criteria": {
+                "SeriesDescription": "SE_PA_ME3_1.75mm_SMS2_TR1180"
+            },
+             "sidecar_changes": {
+                "IntendedFor": ["id_task-localizer_acq-ME3TR1180_echo-01",
+                                "id_task-localizer_acq-ME3TR1180_echo-02",
+                                "id_task-localizer_acq-ME3TR1180_echo-03"]
+            }  
+        },
+        {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME3TR1180_echo-01",
+            "criteria": {
+                "SeriesDescription": "ME3_1.75mm_SMS2_TR1180_SBRef",
+                "EchoNumber": 1
+            }
+        },
+        {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME3TR1180_echo-02",
+            "criteria": {
+                "SeriesDescription": "ME3_1.75mm_SMS2_TR1180_SBRef",
+                "EchoNumber": 2
+            }
+        },
+        {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME3TR1180_echo-03",
+            "criteria": {
+                "SeriesDescription": "ME3_1.75mm_SMS2_TR1180_SBRef",
+                "EchoNumber": 3
+            }
+        },
+        {
+            "id": "id_task-localizer_acq-ME3TR770_echo-01",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-ME3TR770_echo-01",
+            "criteria": {
+                "SeriesDescription": "ME3_1.75mm_SMS3_TR770",
+                "EchoNumber": 1
+            }
+        },
+        {
+            "id": "id_task-localizer_acq-ME3TR770_echo-02",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-ME3TR770_echo-02",
+            "criteria": {
+                "SeriesDescription": "ME3_1.75mm_SMS3_TR770",
+                "EchoNumber": 2
+            }
+        },
+        {
+            "id": "id_task-localizer_acq-ME3TR770_echo-03",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-ME3TR770_echo-03",
+            "criteria": {
+                "SeriesDescription": "ME3_1.75mm_SMS3_TR770",
+                "EchoNumber": 3
+            }
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-ME3TR770_dir-AP",
+            "criteria": {
+                "SeriesDescription": "SE_AP_ME3_1.75mm_SMS3_TR770"
+            },
+            "sidecar_changes": {
+                "IntendedFor": ["id_task-localizer_acq-ME3TR770_echo-01",
+                                "id_task-localizer_acq-ME3TR770_echo-02",
+                                "id_task-localizer_acq-ME3TR770_echo-03"]
+            }   
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-ME3TR770_dir-PA",
+            "criteria": {
+                "SeriesDescription": "SE_PA_ME3_1.75mm_SMS3_TR770"
+            },
+             "sidecar_changes": {
+                "IntendedFor": ["id_task-localizer_acq-ME3TR770_echo-01",
+                                "id_task-localizer_acq-ME3TR770_echo-02",
+                                "id_task-localizer_acq-ME3TR770_echo-03"]
+            }  
+        },
+        {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME3TR770_echo-01",
+            "criteria": {
+                "SeriesDescription": "ME3_1.75mm_SMS3_TR770_SBRef",
+                "EchoNumber": 1
+            }
+        },
+        {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME3TR770_echo-02",
+            "criteria": {
+                "SeriesDescription": "ME3_1.75mm_SMS3_TR770_SBRef",
+                "EchoNumber": 2
+            }
+        },
+        {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME3TR770_echo-03",
+            "criteria": {
+                "SeriesDescription": "ME3_1.75mm_SMS3_TR770_SBRef",
+                "EchoNumber": 3
+            }
+        },
+        {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME3TR1180_echo-03",
+            "criteria": {
+                "SeriesDescription": "ME3_1.75mm_SMS2_TR1180_SBRef",
+                "EchoNumber": 3
+            }
+        },
+        {
+            "id": "id_task-localizer_acq-ME3TR680_echo-01",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-ME3TR680_echo-01",
+            "criteria": {
+                "SeriesDescription": "ME3_1.75mm_SMS4_TR680",
+                "EchoNumber": 1
+            }
+        },
+        {
+            "id": "id_task-localizer_acq-ME3TR680_echo-02",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-ME3TR680_echo-02",
+            "criteria": {
+                "SeriesDescription": "ME3_1.75mm_SMS4_TR680",
+                "EchoNumber": 2
+            }
+        },
+        {
+            "id": "id_task-localizer_acq-ME3TR680_echo-03",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-ME3TR680_echo-03",
+            "criteria": {
+                "SeriesDescription": "ME3_1.75mm_SMS4_TR680",
+                "EchoNumber": 3
+            }
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-ME3TR680_dir-AP",
+            "criteria": {
+                "SeriesDescription": "SE_AP_ME3_1.75mm_SMS4_TR680"
+            },
+            "sidecar_changes": {
+                "IntendedFor": ["id_task-localizer_acq-ME3TR680_echo-01",
+                                "id_task-localizer_acq-ME3TR680_echo-02",
+                                "id_task-localizer_acq-ME3TR680_echo-03"]
+            }   
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-ME3TR680_dir-PA",
+            "criteria": {
+                "SeriesDescription": "SE_PA_ME3_1.75mm_SMS4_TR680"
+            },
+             "sidecar_changes": {
+                "IntendedFor": ["id_task-localizer_acq-ME3TR680_echo-01",
+                                "id_task-localizer_acq-ME3TR680_echo-02",
+                                "id_task-localizer_acq-ME3TR680_echo-03"]
+            }  
+        },
+        {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME3TR680_echo-01",
+            "criteria": {
+                "SeriesDescription": "ME3_1.75mm_SMS4_TR680_SBRef",
+                "EchoNumber": 1
+            }
+        },
+        {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME3TR680_echo-02",
+            "criteria": {
+                "SeriesDescription": "ME3_1.75mm_SMS4_TR680_SBRef",
+                "EchoNumber": 2
+            }
+        },
+        {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-ME3TR680_echo-03",
+            "criteria": {
+                "SeriesDescription": "ME3_1.75mm_SMS4_TR680_SBRef",
+                "EchoNumber": 3
+            }
+        }
+    ]    
+}

@@ -1,0 +1,11 @@
+{
+    "Name": "Localizer Test & Pilot Data for the SUBCORT_HIGHRES MRI protocol",
+    "BIDSVersion": "1.10.0",
+    "DatasetType": "raw",
+    "License": "CCO",
+    "Authors": [
+        "Monika Utroša Škerjanec",
+        "Cesar Caballero-Gaudes",
+        "Alejandro Tabas"
+    ]
+}

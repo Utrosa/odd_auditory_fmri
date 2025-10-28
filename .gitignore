@@ -3,3 +3,5 @@
 # Untracked folders
 data/
 examples/
+**/__pycache__/
+**/ipynb_checkpoints/
