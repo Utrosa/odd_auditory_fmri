@@ -1,7 +1,10 @@
-# Untracked files
-
 # Untracked folders
-data/
+data_logs/
+data_MRI/
+data_physio/
 examples/
+**/derivatives/
+**/sourcedata/
+**/raw/
 **/__pycache__/
 **/ipynb_checkpoints/
