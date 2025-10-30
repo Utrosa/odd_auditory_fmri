@@ -16,15 +16,12 @@ All scripts ran by main_xxx.sh are located in .../scripts except for fMRIprep pr
 1. Get the data from the source and save :
 	.dcm files from MRI scanner in data_MRI/sourcedata/dicoms
 	.acq files from BIOPAC in data_physio/sourcedata
-	.txt files from Exypriment in data_logs/sourcedata
 	.txt files from Expyriment in BIDS data_logs/bids
 	--> These folders are untouched by next steps to ensure replicable pipeline.
-2. Check that data is complete and correctly named.
-3. Visually inspect T1 image.
-4. Exclude incomplete data (e.g.: a functional scan that was interrupted) and remove any duplicate images. Refer to the laboratory log to guide the decision (the log contains info on MRI protocol flow - tracks any changes, errors, modifications, ...).
-5. Run pre_import.py to set up the configuration files for BIDSifying MRI data. You can ignore headscout, phoenix ZIP reports, and phasic images.
-6. Add "dataset_description.json" file to data_MRI/sourcedata/raw
-7. Run [BIDS Validator](http://bids.neuroimaging.io/tools/validator.html) on the dataset to ensure compliance to [the BIDS specification](https://bids-specification.readthedocs.io/en/stable/).
+2. Check that data is complete and correctly named. You may need to generate sidecar files for this (see next step).
+3. Run pre_import.py to generate sidecar files which are necesary to correctly set up the configuration files for BIDSifying MRI data. The configuration json file doesn't have to include the headscout, phoenix ZIP reports, and phasic images.
+4. Add "dataset_description.json" file to data_MRI/sourcedata/raw
+5. Run [BIDS Validator](http://bids.neuroimaging.io/tools/validator.html) on the dataset to ensure compliance to [the BIDS specification](https://bids-specification.readthedocs.io/en/stable/).
 
 ### 02 Importing & Preprocessing
 
@@ -38,14 +35,17 @@ All scripts ran by main_xxx.sh are located in .../scripts except for fMRIprep pr
 
 TODO: integrate NORDIC denoising of functional scans
 
-2. Run fMRIprep_localizer.sh
+2. Exclude incomplete data (e.g.: a functional scan that was interrupted) and remove any duplicate images. Refer to the laboratory log to guide the decision (the log contains info on MRI protocol flow - tracks any changes, errors, modifications, ...).
+3. Visually inspect T1 image.
+
+4. Run fMRIprep_localizer.sh
    - note warnings, bugs, ...
 
    Outputs:
    - preprocessed fMRI data
    - use sloppy tag for testing the pipeline (faster)
 
- 3. Delete temporary cache directories once preprocessing is successful.
+ 5. Delete temporary cache directories once preprocessing is successful.
 
 ### 03 Analysis
 

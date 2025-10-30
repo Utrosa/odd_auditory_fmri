@@ -5,6 +5,7 @@ data_physio/
 examples/
 **/derivatives/
 **/sourcedata/
+**/sidecars/
 **/raw/
 **/__pycache__/
 **/ipynb_checkpoints/
