@@ -20,7 +20,7 @@
 # missing files from PACS.
 
 # Import python packages
-import bioread, os, sys, bids
+import bids, bioread, os, sys, time
 
 # Import custom-made functions
 from scripts import grabber
@@ -59,8 +59,16 @@ def import_MRI(subID, sesID, project, homePath, acq_list):
 		os.system(mp2rage_cmd)
 		
 		# Create a json file for the unbiased clean T1 image.
-		os.system(f"cp {anatPath}/sub-{subID:02d}_ses-{sesID:02d}_UNIT1.json {anatPath}/sub-{subID:02d}_ses-{sesID:02d}_T1w.json")
+		os.rename(f"{anatPath}/sub-{subID:02d}_ses-{sesID:02d}_UNIT1.json", f"{anatPath}/sub-{subID:02d}_ses-{sesID:02d}_T1w.json")
 
+		# Remove redundant files
+		os.remove(UNI_image.path)
+		
+		# Rename the denoised T1 image
+		anatLayout = bids.layout.BIDSLayout(anatPath, validate=False, reset_database=True)
+		T1_conf    = grabber.define_grabconf(subID, sesID, "T1w", "nii.gz")
+		T1_image   = grabber.grab_BIDS_object(anatPath, anatLayout, T1_conf)[0]
+		os.rename(T1_image.path, f"{anatPath}/sub-{subID:02d}_ses-{sesID:02d}_T1w.nii.gz")
 	else:
 		print(f"MP2RAGE was not background-corrected for session {sesID:02d}. Assuming MP2RAGE was collected in ses-01.")
 
@@ -73,12 +81,16 @@ def import_MRI(subID, sesID, project, homePath, acq_list):
 	for ac in acq_list:
 		bold_image_conf = grabber.define_grabconf(subID, sesID, "bold", "nii.gz", acquisition=ac)
 		bold_image = grabber.grab_BIDS_object(funcPath, funcLayout, bold_image_conf)
-		nordic_cmd = (
-			 f"addpath('/home/mutrosa/Documents/projects/select_fMRI/scripts/import'); "
-			 f"nordic('{bold_image[0].path}', '{bold_image[1].path}', '{nordPath}'); "
-			  "exit;")
-		print("\nRunning:", nordic_cmd)
-		os.system(f'matlab -nodesktop -nosplash -r "{nordic_cmd}"')
+		
+		for i in range(0, len(bold_image), 2):
+			bold  = bold_image[i].path
+			phase = bold_image[i + 1].path
+			nordic_cmd = (
+				 f"addpath('/home/mutrosa/Documents/projects/select_fMRI/scripts/import'); "
+				 f"nordic('{bold}', '{phase}', '{nordPath}'); "
+				  "exit;")
+			print("\nRunning:", nordic_cmd)
+			os.system(f'matlab -nodesktop -nosplash -r "{nordic_cmd}"')
 
 if __name__ == "__main__":
     subID, sesID, project, homePath, acq_list = int(sys.argv[1]), int(sys.argv[2]), sys.argv[3], sys.argv[4], sys.argv[5:]

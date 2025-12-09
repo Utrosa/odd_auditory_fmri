@@ -423,6 +423,7 @@
             },
             "sidecar_changes": {
                 "Units": "rad",
+                "TaskName": "localizer",
                 "IntendedFor": "id_task-localizer_acq-ME3TR1100_echo-01"
             }
         },
@@ -451,6 +452,7 @@
             },
             "sidecar_changes": {
                 "Units": "rad",
+                "TaskName": "localizer",
                 "IntendedFor": "id_task-localizer_acq-ME3TR1100_echo-02"
             }
         },
