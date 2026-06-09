@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # Time-stamp: <02-12-2025 m.utrosa@bcbl.eu>
+# Correcting PhaseEncodingDirection in json files of FH (sbref) scans for Pilot 2.
 import json
 from bids import BIDSLayout
 from pathlib import Path

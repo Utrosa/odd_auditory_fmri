@@ -21,10 +21,27 @@ function tapas(homePath, subID, sesID, project, task)
         % Remove the last 3 characters
         SeriesDescription = regexprep(name, '_\d+$', '');
     
-        % Update labels according as in conf_SUBCORT_HIGHRES.json
+        % Update labels according as in the configuration json file.
+
+        %%% --------- Pilot 4: small voxel size sequences --------- %%%
+        if strcmp(SeriesDescription, "BOLD_1.6mm_SMS1_TR1900")
+            localizerDir(i).bids_name = 'NOACC16';
+
+        elseif strcmp(SeriesDescription, "BOLD_1.5mm_TE40_TR2150")
+            localizerDir(i).bids_name = 'NOACC15';
+
+        %%% --------- Pilot 3: low echo time sequences --------- %%%
+        elseif strcmp(SeriesDescription, "Dresden_1.75mm_SMS1_TR1400_PF78_wFatSat")
+            localizerDir(i).bids_name = 'PF78';
+ 
+        elseif strcmp(SeriesDescription, "Dresden_1.75mm_SMS1_TR1500_wFatSat")
+            localizerDir(i).bids_name = 'NOACC';
     
+        elseif strcmp(SeriesDescription, "Dresden_1.75mm_SMS1_TR1150_wFatSat")
+            localizerDir(i).bids_name = 'GRAPPA';
+
         %%% --------- 1.5 mm sequences --------- %%%
-        if strcmp(SeriesDescription, "Dresden_1.5mm_SMS1_TR2100_noFatSat")
+        elseif strcmp(SeriesDescription, "Dresden_1.5mm_SMS1_TR2100_noFatSat")
             localizerDir(i).bids_name = 'DresdenNoFat';
  
         elseif strcmp(SeriesDescription, "Dresden_1.5mm_SMS1_TR2400_wFatSat")
@@ -135,7 +152,7 @@ function tapas(homePath, subID, sesID, project, task)
         physio.save_dir = biopacPath;
         
         %% write_BIDS module
-        physio.write_bids.bids_step = 4;
+        physio.write_bids.bids_step   = 4;
         physio.write_bids.bids_dir    = biopacPath;
         physio.write_bids.bids_prefix = sprintf('sub-%02d_ses-%02d_task-%s', subID, sesID, task);
         
@@ -153,7 +170,7 @@ function tapas(homePath, subID, sesID, project, task)
         physio.log_files.sampling_interval = compData.isi;
         
         % Which scan shall be aligned to which part of the logfile.
-        physio.log_files.align_scan  = 'last';
+        physio.log_files.align_scan  = 'last'; % change to first
         
         %% scan_timing module
         % Parameters for sequence timing & synchronization

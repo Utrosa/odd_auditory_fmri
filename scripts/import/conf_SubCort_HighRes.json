@@ -3,6 +3,18 @@
 
         {
             "datatype": "anat",
+            "suffix": "T1w",
+            "criteria": {
+                "SeriesDescription": "t1_mprage_sag_p2_1iso_MGH",
+                "EchoTime": 0.00236
+            },
+            "sidecar_changes": {
+                "PulseSequenceName": "*tfl3d1_176ns"
+            }
+        },
+
+        {
+            "datatype": "anat",
             "suffix": "MP2RAGE",
             "custom_entities": "inv-1",
             "criteria": {
@@ -13,7 +25,8 @@
                 "RepetitionTimePreparation": 5,
                 "RepetitionTimeExcitation": 5,
                 "InversionTime": 0.7,
-                "NumberShots": 1
+                "NumberShots": 1,
+                "PulseSequenceName": "*tfl3d1_176ns"
             }
         },
 
@@ -28,8 +41,9 @@
             "sidecar_changes": {
                 "RepetitionTimePreparation": 5,
                 "RepetitionTimeExcitation": 5,
-                "InversionTime": 0.7,     
-                "NumberShots": 1
+                "InversionTime": 2.5,     
+                "NumberShots": 1,
+                "PulseSequenceName": "*tfl3d1_176ns"
             }
         },
 
@@ -41,1520 +55,157 @@
                 "EchoTime": 0.00298
             },
             "sidecar_changes": {
-                "FlipAngle": 4
+                "PulseSequenceName": "*tfl3d1_176ns"
             }
         },
 
         {
-            "id": "id_task-localizer_acq-DresdenNoFat",
+            "id": "id_task-localizer_acq-NOACC16",
             "datatype": "func",
             "suffix": "bold",
-            "custom_entities": "task-localizer_acq-DresdenNoFat",
+            "custom_entities": "task-localizer_acq-NOACC16",
             "criteria": {
-                "SeriesDescription": "Dresden_1.5mm_SMS1_TR2100_noFatSat"
+                "SeriesDescription": "BOLD_1.6mm_SMS1_TR1900"
             },
             "sidecar_changes": {
-                "TaskName": "localizer"
+                "TaskName": "localizer",
+                "PulseSequenceName": "epfid2d1_96",
+                "InstitutionalDepartmentName": "BCBL"
+
             }
         },
 
         {
             "datatype": "func",
             "suffix": "bold",
-            "custom_entities": "task-localizer_acq-DresdenNoFat_part-phase",
+            "custom_entities": "task-localizer_acq-NOACC16_part-phase",
             "criteria": {
-                "SeriesDescription": "Dresden_1.5mm_SMS1_TR2100_noFatSat_Pha"
+                "SeriesDescription": "BOLD_1.6mm_SMS1_TR1900_Pha"
             },
             "sidecar_changes": {
                 "Units": "rad",
                 "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-DresdenNoFat"
+                "PulseSequenceName": "epfid2d1_96",
+                "InstitutionalDepartmentName": "BCBL",
+                "IntendedFor": "id_task-localizer_acq-NOACC16"
             }
         },
 
         {
             "datatype": "fmap",
             "suffix": "epi",
-            "custom_entities": "acq-DresdenNoFat_dir-AP",
+            "custom_entities": "acq-NOACC16_dir-AP",
             "criteria": {
-                "SeriesDescription": "SE_AP_Dresden_1.5mm_SMS1_TR2100"
+                "SeriesDescription": "SE_fmapRL_1.6mm_SMS1_TR1900"
             },
             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-DresdenNoFat"
+                "IntendedFor": "id_task-localizer_acq-NOACC16",
+                "PulseSequenceName": "epse2d1_96",
+                "InstitutionalDepartmentName": "BCBL"
             }
         },
-        
+
         {
             "datatype": "fmap",
             "suffix": "epi",
-            "custom_entities": "acq-DresdenNoFat_dir-PA",
+            "custom_entities": "acq-NOACC16_dir-PA",
             "criteria": {
-                "SeriesDescription": "SE_PA_Dresden_1.5mm_SMS1_TR2100"
+                "SeriesDescription": "SE_fmapLR_1.6mm_SMS1_TR1900"
             },
             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-DresdenNoFat"
+                "IntendedFor": "id_task-localizer_acq-NOACC16",
+                "PulseSequenceName": "epse2d1_96",
+                "InstitutionalDepartmentName": "BCBL"
             }
         },
 
         {
             "datatype": "func",
             "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-DresdenNoFat",
+            "custom_entities": "task-localizer_acq-NOACC16",
             "criteria": {
-                "SeriesDescription": "FH_Dresden_1.5mm_SMS1_TR2100_noFatSat"
+                "SeriesDescription": "BOLD_FH_1.6mm_SMS1_TR1900"
             },
             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-DresdenNoFat",
-                "TaskName": "localizer"
+                "IntendedFor": "id_task-localizer_acq-NOACC16",
+                "TaskName": "localizer",
+                "PulseSequenceName": "epfid2d1_96",
+                "InstitutionalDepartmentName": "BCBL"
             }
         },
 
         {
-            "id": "id_task-localizer_acq-DresdenWFat",
+            "id": "id_task-localizer_acq-NOACC15",
             "datatype": "func",
             "suffix": "bold",
-            "custom_entities": "task-localizer_acq-DresdenWFat",
+            "custom_entities": "task-localizer_acq-NOACC15",
             "criteria": {
-                "SeriesDescription": "Dresden_1.5mm_SMS1_TR2400_wFatSat"
+                "SeriesDescription": "BOLD_1.5mm_TE40_TR2150"
             },
             "sidecar_changes": {
-                "TaskName": "localizer"
+                "TaskName": "localizer",
+                "PulseSequenceName": "epfid2d1_102",
+                "InstitutionalDepartmentName": "BCBL"
             }
         },
 
         {
             "datatype": "func",
             "suffix": "bold",
-            "custom_entities": "task-localizer_acq-DresdenWFat_part-phase",
+            "custom_entities": "task-localizer_acq-NOACC15_part-phase",
             "criteria": {
-                "SeriesDescription": "Dresden_1.5mm_SMS1_TR2400_wFatSat_Pha"
+                "SeriesDescription": "BOLD_1.5mm_TE40_TR2150_Pha"
             },
             "sidecar_changes": {
                 "Units": "rad",
                 "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-DresdenWFat"
+                "IntendedFor": "id_task-localizer_acq-NOACC15",
+                "PulseSequenceName": "epfid2d1_102",
+                "InstitutionalDepartmentName": "BCBL"
             }
         },
 
         {
             "datatype": "fmap",
             "suffix": "epi",
-            "custom_entities": "acq-DresdenWFat_dir-AP",
+            "custom_entities": "acq-NOACC15_dir-AP",
             "criteria": {
-                "SeriesDescription": "SE_AP_Dresden_1.5mm_SMS1_TR2400"
+                "SeriesDescription": "SE_fmapRL_1.5mm_TE40_TR2150"
             },
             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-DresdenWFat"
+                "IntendedFor": "id_task-localizer_acq-NOACC15",
+                "PulseSequenceName": "epse2d1_102",
+                "InstitutionalDepartmentName": "BCBL"
             }
         },
 
         {
             "datatype": "fmap",
             "suffix": "epi",
-            "custom_entities": "acq-DresdenWFat_dir-PA",
+            "custom_entities": "acq-NOACC15_dir-PA",
             "criteria": {
-                "SeriesDescription": "SE_PA_Dresden_1.5mm_SMS1_TR2400"
+                "SeriesDescription": "SE_fmapLR_1.5mm_TE40_TR2150"
             },
             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-DresdenWFat"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-DresdenWFat",
-            "criteria": {
-                "SeriesDescription": "FH_Dresden_1.5mm_SMS1_TR2400_wFatSat"
-            },
-            "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-DresdenWFat",
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "id": "id_task-localizer_acq-ME1TR880_echo-01",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME1TR880_echo-01",
-            "criteria": {
-                "SeriesDescription": "ME1_1.5mm_SMS2_TR880"
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME1TR880_echo-01_part-phase",
-            "criteria": {
-                "SeriesDescription": "ME1_1.5mm_SMS2_TR880_Pha"
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-ME1TR880_echo-01"
-            }
-        },
-
-        {
-            "datatype": "fmap",
-            "suffix": "epi",
-            "custom_entities": "acq-ME1TR880_dir-AP",
-            "criteria": {
-                "SeriesDescription": "SE_AP_ME1_1.5mm_SMS2_TR880"
-            },
-            "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME1TR880_echo-01"
-            }
-        },
-
-        {
-            "datatype": "fmap",
-            "suffix": "epi",
-            "custom_entities": "acq-ME1TR880_dir-PA",
-            "criteria": {
-                "SeriesDescription": "SE_PA_ME1_1.5mm_SMS2_TR880"
-            },
-            "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME1TR880_echo-01"
+                "IntendedFor": "id_task-localizer_acq-NOACC15",
+                "PulseSequenceName": "epse2d1_102",
+                "InstitutionalDepartmentName": "BCBL"
             }            
         },
 
         {   
-            "id": "sbref_task-localizer_acq-ME1TR880_echo-01",
+            "id": "sbref_task-localizer_acq-NOACC15",
             "datatype": "func",
             "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-ME1TR880_echo-01",
+            "custom_entities": "task-localizer_acq-NOACC15",
             "criteria": {
-                "SeriesDescription": "FH_ME1_1.5mm_SMS2_TR880_SBRef"
+                "SeriesDescription": "BOLD_FH_1.5mm_TE40_TR2150"
             },
             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME1TR880_echo-01",
-                "TaskName": "localizer"
-            }
-        },
-        
-        {
-            "id": "id_task-localizer_acq-ME3TR1600_echo-01",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR1600_echo-01",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS2_1.5mm_TR1600",
-                "EchoNumber": 1
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR1600_echo-01_part-phase",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS2_1.5mm_TR1600_Pha",
-                "EchoNumber": 1
-            },
-            "sidecar_changes": {
-                "Units": "rad",
+                "IntendedFor": "id_task-localizer_acq-NOACC15",
                 "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-ME3TR1600_echo-01"
-            }
-        },
-
-        {
-            "id": "id_task-localizer_acq-ME3TR1600_echo-02",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR1600_echo-02",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS2_1.5mm_TR1600",
-                "EchoNumber": 2
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR1600_echo-02_part-phase",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS2_1.5mm_TR1600_Pha",
-                "EchoNumber": 2
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-ME3TR1600_echo-02"
-            }
-        },
-
-        {
-            "id": "id_task-localizer_acq-ME3TR1600_echo-03",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR1600_echo-03",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS2_1.5mm_TR1600",
-                "EchoNumber": 3
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR1600_echo-03_part-phase",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS2_1.5mm_TR1600_Pha",
-                "EchoNumber": 3
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-ME3TR1600_echo-03"
-            }
-        },
-
-        {
-            "datatype": "fmap",
-            "suffix": "epi",
-            "custom_entities": "acq-ME3TR1600_dir-AP",
-            "criteria": {
-                "SeriesDescription": "SE_AP_ME3_SMS2_1.5mm_TR1600"
-            },
-            "sidecar_changes": {
-                "IntendedFor": ["id_task-localizer_acq-ME3TR1600_echo-01",
-                                "id_task-localizer_acq-ME3TR1600_echo-02",
-                                "id_task-localizer_acq-ME3TR1600_echo-03"]
-            }   
-        },
-
-        {
-            "datatype": "fmap",
-            "suffix": "epi",
-            "custom_entities": "acq-ME3TR1600_dir-PA",
-            "criteria": {
-                "SeriesDescription": "SE_PA_ME3_SMS2_1.5mm_TR1600"
-            },
-             "sidecar_changes": {
-                "IntendedFor": ["id_task-localizer_acq-ME3TR1600_echo-01",
-                                "id_task-localizer_acq-ME3TR1600_echo-02",
-                                "id_task-localizer_acq-ME3TR1600_echo-03"]
-            }  
-        },
-        
-        {
-            "id": "sbref_task-localizer_acq-ME3TR1600_echo-01",
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-ME3TR1600_echo-01",
-            "criteria": {
-                "SeriesDescription": "FH_ME3_SMS2_1.5mm_TR1600_SBRef",
-                "EchoNumber": 1
-            },
-             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME3TR1600_echo-01",
-                "TaskName": "localizer"
-            }
-        },
-
-        {   
-            "id": "sbref_task-localizer_acq-ME3TR1600_echo-02",
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-ME3TR1600_echo-02",
-            "criteria": {
-                "SeriesDescription": "FH_ME3_SMS2_1.5mm_TR1600_SBRef",
-                "EchoNumber": 2
-            },
-             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME3TR1600_echo-02",
-                "TaskName": "localizer"
-            }
-
-        },
-
-        {   
-            "id": "sbref_task-localizer_acq-ME3TR1600_echo-03",
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-ME3TR1600_echo-03",
-            "criteria": {
-                "SeriesDescription": "FH_ME3_SMS2_1.5mm_TR1600_SBRef",
-                "EchoNumber": 3
-            },
-             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME3TR1600_echo-03",
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "id": "id_task-localizer_acq-ME3TR1100_echo-01",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR1100_echo-01",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS3_1.5mm_TR1100",
-                "EchoNumber": 1
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR1100_echo-01_part-phase",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS3_1.5mm_TR1100_Pha",
-                "EchoNumber": 1
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-ME3TR1100_echo-01"
-            }
-        },
-
-        {
-            "id": "id_task-localizer_acq-ME3TR1100_echo-02",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR1100_echo-02",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS3_1.5mm_TR1100",
-                "EchoNumber": 2
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR1100_echo-02_part-phase",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS3_1.5mm_TR1100_Pha",
-                "EchoNumber": 2
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-ME3TR1100_echo-02"
-            }
-        },
-
-        {
-            "id": "id_task-localizer_acq-ME3TR1100_echo-03",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR1100_echo-03",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS3_1.5mm_TR1100",
-                "EchoNumber": 3
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR1100_echo-03_part-phase",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS3_1.5mm_TR1100_Pha",
-                "EchoNumber": 3
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-ME3TR1100_echo-03"
-            }
-        },
-
-        {
-            "datatype": "fmap",
-            "suffix": "epi",
-            "custom_entities": "acq-ME3TR1100_dir-AP",
-            "criteria": {
-                "SeriesDescription": "SE_AP_ME3_SMS3_1.5mm_TR1100"
-            },
-            "sidecar_changes": {
-                "IntendedFor": ["id_task-localizer_acq-ME3TR1100_echo-01",
-                                "id_task-localizer_acq-ME3TR1100_echo-02",
-                                "id_task-localizer_acq-ME3TR1100_echo-03"]
-            }   
-        },
-
-        {
-            "datatype": "fmap",
-            "suffix": "epi",
-            "custom_entities": "acq-ME3TR1100_dir-PA",
-            "criteria": {
-                "SeriesDescription": "SE_PA_ME3_SMS3_1.5mm_TR1100"
-            },
-             "sidecar_changes": {
-                "IntendedFor": ["id_task-localizer_acq-ME3TR1100_echo-01",
-                                "id_task-localizer_acq-ME3TR1100_echo-02",
-                                "id_task-localizer_acq-ME3TR1100_echo-03"]
-            }  
-        },
-
-        {
-            "id": "sbref_task-localizer_acq-ME3TR1100_echo-01",
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-ME3TR1100_echo-01",
-            "criteria": {
-                "SeriesDescription": "FH_ME3_SMS3_1.5mm_TR1100_SBRef",
-                "EchoNumber": 1
-            },
-             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME3TR1100_echo-01",
-                "TaskName": "localizer"
-            }
-        },
-
-        {   
-            "id": "sbref_task-localizer_acq-ME3TR1100_echo-02",
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-ME3TR1100_echo-02",
-            "criteria": {
-                "SeriesDescription": "FH_ME3_SMS3_1.5mm_TR1100_SBRef",
-                "EchoNumber": 2
-            },
-             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME3TR1100_echo-02",
-                "TaskName": "localizer"
-            }
-
-        },
-
-        {   
-            "id": "sbref_task-localizer_acq-ME3TR1100_echo-03",
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-ME3TR1100_echo-03",
-            "criteria": {
-                "SeriesDescription": "FH_ME3_SMS3_1.5mm_TR1100_SBRef",
-                "EchoNumber": 3
-            },
-             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME3TR1100_echo-03",
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "id": "id_task-localizer_acq-ME3TR850_echo-01",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR850_echo-01",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS4_1.5mm_TR850",
-                "EchoNumber": 1
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR850_echo-01_part-phase",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS4_1.5mm_TR850_Pha",
-                "EchoNumber": 1
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-ME3TR850_echo-01"
-            }
-        },
-
-        {
-            "id": "id_task-localizer_acq-ME3TR850_echo-02",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR850_echo-02",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS4_1.5mm_TR850",
-                "EchoNumber": 2
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR850_echo-02_part-phase",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS4_1.5mm_TR850_Pha",
-                "EchoNumber": 2
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-ME3TR850_echo-02"
-            }
-        },
-
-        {
-            "id": "id_task-localizer_acq-ME3TR850_echo-03",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR850_echo-03",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS4_1.5mm_TR850",
-                "EchoNumber": 3
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR850_echo-03_part-phase",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS4_1.5mm_TR850_Pha",
-                "EchoNumber": 3
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-ME3TR850_echo-03"
-            }
-        },
-
-        {
-            "datatype": "fmap",
-            "suffix": "epi",
-            "custom_entities": "acq-ME3TR850_dir-AP",
-            "criteria": {
-                "SeriesDescription": "SE_AP_ME3_SMS4_1.5mm_TR850"
-            },
-            "sidecar_changes": {
-                "IntendedFor": ["id_task-localizer_acq-ME3TR850_echo-01",
-                                "id_task-localizer_acq-ME3TR850_echo-02",
-                                "id_task-localizer_acq-ME3TR850_echo-03"]
-            }   
-        },
-
-        {
-            "datatype": "fmap",
-            "suffix": "epi",
-            "custom_entities": "acq-ME3TR850_dir-PA",
-            "criteria": {
-                "SeriesDescription": "SE_PA_ME3_SMS4_1.5mm_TR850"
-            },
-             "sidecar_changes": {
-                "IntendedFor": ["id_task-localizer_acq-ME3TR850_echo-01",
-                                "id_task-localizer_acq-ME3TR850_echo-02",
-                                "id_task-localizer_acq-ME3TR850_echo-03"]
-            }  
-        },
-
-        {
-            "id": "sbref_task-localizer_acq-ME3TR850_echo-01",
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-ME3TR850_echo-01",
-            "criteria": {
-                "SeriesDescription": "FH_ME3_SMS4_1.5mm_TR850_SBRef",
-                "EchoNumber": 1
-            },
-             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME3TR850_echo-01",
-                "TaskName": "localizer"
-            }
-        },
-
-        {   
-            "id": "sbref_task-localizer_acq-ME3TR850_echo-02",
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-ME3TR850_echo-02",
-            "criteria": {
-                "SeriesDescription": "FH_ME3_SMS4_1.5mm_TR850_SBRef",
-                "EchoNumber": 2
-            },
-             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME3TR850_echo-02",
-                "TaskName": "localizer"
-            }
-
-        },
-
-        {   
-            "id": "sbref_task-localizer_acq-ME3TR850_echo-03",
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-ME3TR850_echo-03",
-            "criteria": {
-                "SeriesDescription": "FH_ME3_SMS4_1.5mm_TR850_SBRef",
-                "EchoNumber": 3
-            },
-             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME3TR850_echo-03",
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "id": "id_task-localizer_acq-ME3TR700_echo-01",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR700_echo-01",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS5_1.5mm_TR700",
-                "EchoNumber": 1
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR700_echo-01_part-phase",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS5_1.5mm_TR700_Pha",
-                "EchoNumber": 1
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-ME3TR700_echo-01"
-            }
-        },
-
-        {
-            "id": "id_task-localizer_acq-ME3TR700_echo-02",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR700_echo-02",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS5_1.5mm_TR700",
-                "EchoNumber": 2
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR700_echo-02_part-phase",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS5_1.5mm_TR700_Pha",
-                "EchoNumber": 2
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-ME3TR700_echo-02"
-            }
-        },
-
-        {
-            "id": "id_task-localizer_acq-ME3TR700_echo-03",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR700_echo-03",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS5_1.5mm_TR700",
-                "EchoNumber": 3
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR700_echo-03_part-phase",
-            "criteria": {
-                "SeriesDescription": "ME3_SMS5_1.5mm_TR700_Pha",
-                "EchoNumber": 3
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-ME3TR700_echo-03"
-            }
-        },
-
-        {
-            "datatype": "fmap",
-            "suffix": "epi",
-            "custom_entities": "acq-ME3TR700_dir-AP",
-            "criteria": {
-                "SeriesDescription": "SE_AP_ME3_SMS5_1.5mm_TR700"
-            },
-            "sidecar_changes": {
-                "IntendedFor": ["id_task-localizer_acq-ME3TR700_echo-01",
-                                "id_task-localizer_acq-ME3TR700_echo-02",
-                                "id_task-localizer_acq-ME3TR700_echo-03"]
-            }   
-        },
-
-        {
-            "datatype": "fmap",
-            "suffix": "epi",
-            "custom_entities": "acq-ME3TR700_dir-PA",
-            "criteria": {
-                "SeriesDescription": "SE_PA_ME3_SMS5_1.5mm_TR700"
-            },
-             "sidecar_changes": {
-                "IntendedFor": ["id_task-localizer_acq-ME3TR700_echo-01",
-                                "id_task-localizer_acq-ME3TR700_echo-02",
-                                "id_task-localizer_acq-ME3TR700_echo-03"]
-            }  
-        },
-
-        {
-            "id": "sbref_task-localizer_acq-ME3TR700_echo-01",
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-ME3TR700_echo-01",
-            "criteria": {
-                "SeriesDescription": "FH_ME3_SMS5_1.5mm_TR700_SBRef",
-                "EchoNumber": 1
-            },
-             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME3TR700_echo-01",
-                "TaskName": "localizer"
-            }
-        },
-
-        {   
-            "id": "sbref_task-localizer_acq-ME3TR700_echo-02",
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-ME3TR700_echo-02",
-            "criteria": {
-                "SeriesDescription": "FH_ME3_SMS5_1.5mm_TR700_SBRef",
-                "EchoNumber": 2
-            },
-             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME3TR700_echo-02",
-                "TaskName": "localizer"
-            }
-
-        },
-
-        {   
-            "id": "sbref_task-localizer_acq-ME3TR700_echo-03",
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-ME3TR700_echo-03",
-            "criteria": {
-                "SeriesDescription": "FH_ME3_SMS5_1.5mm_TR700_SBRef",
-                "EchoNumber": 3
-            },
-             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME3TR700_echo-03",
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "id": "id_task-localizer_acq-DresdenNoFat175",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-DresdenNoFat175",
-            "criteria": {
-                "SeriesDescription": "Dresden_1.75mm_SMS1_TR1640_noFatSat"
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-DresdenNoFat175_part-phase",
-            "criteria": {
-                "SeriesDescription": "Dresden_1.75mm_SMS1_TR1640_noFatSat_Pha"
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-DresdenNoFat175"
-            }
-        },
-
-        {
-            "datatype": "fmap",
-            "suffix": "epi",
-            "custom_entities": "acq-DresdenNoFat175_dir-AP",
-            "criteria": {
-                "SeriesDescription": "SE_AP_Dresden_1.75mm_SMS1_TR1640"
-            },
-            "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-DresdenNoFat175"
-            }
-        },
-
-        {
-            "datatype": "fmap",
-            "suffix": "epi",
-            "custom_entities": "acq-DresdenNoFat175_dir-PA",
-            "criteria": {
-                "SeriesDescription": "SE_PA_Dresden_1.75mm_SMS1_TR1640"
-            },
-            "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-DresdenNoFat175"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-DresdenNoFat175",
-            "criteria": {
-                "SeriesDescription": "FH_Dresden_1.75mm_SMS1_TR1640_noFatSat"
-            },
-            "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-DresdenNoFat175",
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "id": "id_task-localizer_acq-DresdenWFat175",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-DresdenWFat175",
-            "criteria": {
-                "SeriesDescription": "Dresden_1.75mm_SMS1_TR1820_wFatSat"
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-DresdenWFat175_part-phase",
-            "criteria": {
-                "SeriesDescription": "Dresden_1.75mm_SMS1_TR1820_wFatSat_Pha"
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-DresdenWFat175"
-            }
-        },
-
-        {
-            "datatype": "fmap",
-            "suffix": "epi",
-            "custom_entities": "acq-DresdenWFat175_dir-AP",
-            "criteria": {
-                "SeriesDescription": "SE_AP_Dresden_1.75mm_SMS1_TR1820_wFatSat"
-            },
-            "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-DresdenWFat175"
-            }
-        },
-
-        {
-            "datatype": "fmap",
-            "suffix": "epi",
-            "custom_entities": "acq-DresdenWFat175_dir-PA",
-            "criteria": {
-                "SeriesDescription": "SE_PA_Dresden_1.75mm_SMS1_TR1820_wFatSat"
-            },
-            "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-DresdenWFat175"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-DresdenWFat175",
-            "criteria": {
-                "SeriesDescription": "FH_Dresden_1.75mm_SMS1_TR1820_wFatSat"
-            },
-            "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-DresdenWFat175",
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "id": "id_task-localizer_acq-ME1TR780_echo-01",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME1TR780_echo-01",
-            "criteria": {
-                "SeriesDescription": "ME1_1.75mm_SMS2_TR780"
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME1TR780_echo-01_part-phase",
-            "criteria": {
-                "SeriesDescription": "ME1_1.75mm_SMS2_TR780_Pha"
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-ME1TR780_echo-01"
-            }
-        },
-
-        {
-            "datatype": "fmap",
-            "suffix": "epi",
-            "custom_entities": "acq-ME1TR780_dir-AP",
-            "criteria": {
-                "SeriesDescription": "SE_AP_ME1_1.75mm_SMS2_TR780"
-            },
-            "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME1TR780_echo-01"
-            }
-        },
-
-        {
-            "datatype": "fmap",
-            "suffix": "epi",
-            "custom_entities": "acq-ME1TR780_dir-PA",
-            "criteria": {
-                "SeriesDescription": "SE_PA_ME1_1.75mm_SMS2_TR780"
-            },
-            "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME1TR780_echo-01"
-            }            
-        },
-
-        {
-            "id": "sbref_task-localizer_acq-ME1TR780_echo-01",
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-ME1TR780_echo-01",
-            "criteria": {
-                "SeriesDescription": "FH_ME1_1.75mm_SMS2_TR780_SBRef"
-            },
-            "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME1TR780_echo-01",
-                "TaskName": "localizer"
-            }
-        },   
-
-        {
-            "id": "id_task-localizer_acq-ME3TR1180_echo-01",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR1180_echo-01",
-            "criteria": {
-                "SeriesDescription": "ME3_1.75mm_SMS2_TR1180",
-                "EchoNumber": 1
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR1180_echo-01_part-phase",
-            "criteria": {
-                "SeriesDescription": "ME3_1.75mm_SMS2_TR1180_Pha",
-                "EchoNumber": 1
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-ME3TR1180_echo-01"
-            }
-        },
-
-        {
-            "id": "id_task-localizer_acq-ME3TR1180_echo-02",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR1180_echo-02",
-            "criteria": {
-                "SeriesDescription": "ME3_1.75mm_SMS2_TR1180",
-                "EchoNumber": 2
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR1180_echo-02_part-phase",
-            "criteria": {
-                "SeriesDescription": "ME3_1.75mm_SMS2_TR1180_Pha",
-                "EchoNumber": 2
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-ME3TR1180_echo-02"
-            }
-        },
-
-        {
-            "id": "id_task-localizer_acq-ME3TR1180_echo-03",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR1180_echo-03",
-            "criteria": {
-                "SeriesDescription": "ME3_1.75mm_SMS2_TR1180",
-                "EchoNumber": 3
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR1180_echo-03_part-phase",
-            "criteria": {
-                "SeriesDescription": "ME3_1.75mm_SMS2_TR1180_Pha",
-                "EchoNumber": 3
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-ME3TR1180_echo-03"
-            }
-        },
-
-        {
-            "datatype": "fmap",
-            "suffix": "epi",
-            "custom_entities": "acq-ME3TR1180_dir-AP",
-            "criteria": {
-                "SeriesDescription": "SE_AP_ME3_1.75mm_SMS2_TR1180"
-            },
-            "sidecar_changes": {
-                "IntendedFor": ["id_task-localizer_acq-ME3TR1180_echo-01",
-                                "id_task-localizer_acq-ME3TR1180_echo-02",
-                                "id_task-localizer_acq-ME3TR1180_echo-03"]
-            }   
-        },
-
-        {
-            "datatype": "fmap",
-            "suffix": "epi",
-            "custom_entities": "acq-ME3TR1180_dir-PA",
-            "criteria": {
-                "SeriesDescription": "SE_PA_ME3_1.75mm_SMS2_TR1180"
-            },
-             "sidecar_changes": {
-                "IntendedFor": ["id_task-localizer_acq-ME3TR1180_echo-01",
-                                "id_task-localizer_acq-ME3TR1180_echo-02",
-                                "id_task-localizer_acq-ME3TR1180_echo-03"]
-            }  
-        },
-
-        {
-            "id": "sbref_task-localizer_acq-ME3TR1180_echo-01",
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-ME3TR1180_echo-01",
-            "criteria": {
-                "SeriesDescription": "FH_ME3_1.75mm_SMS2_TR1180_SBRef",
-                "EchoNumber": 1
-            },
-             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME3TR1180_echo-01",
-                "TaskName": "localizer"
-            }
-        },
-
-        {   
-            "id": "sbref_task-localizer_acq-ME3TR1180_echo-02",
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-ME3TR1180_echo-02",
-            "criteria": {
-                "SeriesDescription": "FH_ME3_1.75mm_SMS2_TR1180_SBRef",
-                "EchoNumber": 2
-            },
-             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME3TR1180_echo-02",
-                "TaskName": "localizer"
-            }
-
-        },
-
-        {   
-            "id": "sbref_task-localizer_acq-ME3TR1180_echo-03",
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-ME3TR1180_echo-03",
-            "criteria": {
-                "SeriesDescription": "FH_ME3_1.75mm_SMS2_TR1180_SBRef",
-                "EchoNumber": 3
-            },
-             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME3TR1180_echo-03",
-                "TaskName": "localizer"
-            }
-        },
-
-         {
-            "id": "id_task-localizer_acq-ME3TR770_echo-01",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR770_echo-01",
-            "criteria": {
-                "SeriesDescription": "ME3_1.75mm_SMS3_TR770",
-                "EchoNumber": 1
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR770_echo-01_part-phase",
-            "criteria": {
-                "SeriesDescription": "ME3_1.75mm_SMS3_TR770_Pha",
-                "EchoNumber": 1
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-ME3TR770_echo-01"
-            }
-        },
-
-        {
-            "id": "id_task-localizer_acq-ME3TR770_echo-02",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR770_echo-02",
-            "criteria": {
-                "SeriesDescription": "ME3_1.75mm_SMS3_TR770",
-                "EchoNumber": 2
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR770_echo-02_part-phase",
-            "criteria": {
-                "SeriesDescription": "ME3_1.75mm_SMS3_TR770_Pha",
-                "EchoNumber": 2
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-ME3TR770_echo-02"
-            }
-        },
-
-        {
-            "id": "id_task-localizer_acq-ME3TR770_echo-03",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR770_echo-03",
-            "criteria": {
-                "SeriesDescription": "ME3_1.75mm_SMS3_TR770",
-                "EchoNumber": 3
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR770_echo-03_part-phase",
-            "criteria": {
-                "SeriesDescription": "ME3_1.75mm_SMS3_TR770_Pha",
-                "EchoNumber": 3
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-ME3TR770_echo-03"
-            }
-        },
-
-        {
-            "datatype": "fmap",
-            "suffix": "epi",
-            "custom_entities": "acq-ME3TR770_dir-AP",
-            "criteria": {
-                "SeriesDescription": "SE_AP_ME3_1.75mm_SMS3_TR770"
-            },
-            "sidecar_changes": {
-                "IntendedFor": ["id_task-localizer_acq-ME3TR770_echo-01",
-                                "id_task-localizer_acq-ME3TR770_echo-02",
-                                "id_task-localizer_acq-ME3TR770_echo-03"]
-            }   
-        },
-
-        {
-            "datatype": "fmap",
-            "suffix": "epi",
-            "custom_entities": "acq-ME3TR770_dir-PA",
-            "criteria": {
-                "SeriesDescription": "SE_PA_ME3_1.75mm_SMS3_TR770"
-            },
-             "sidecar_changes": {
-                "IntendedFor": ["id_task-localizer_acq-ME3TR770_echo-01",
-                                "id_task-localizer_acq-ME3TR770_echo-02",
-                                "id_task-localizer_acq-ME3TR770_echo-03"]
-            }  
-        },
-
-        {
-            "id": "sbref_task-localizer_acq-ME3TR770_echo-01",
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-ME3TR770_echo-01",
-            "criteria": {
-                "SeriesDescription": "FH_ME3_1.75mm_SMS3_TR770_SBRef",
-                "EchoNumber": 1
-            },
-             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME3TR770_echo-01",
-                "TaskName": "localizer"
-            }
-        },
-
-        {   
-            "id": "sbref_task-localizer_acq-ME3TR770_echo-02",
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-ME3TR770_echo-02",
-            "criteria": {
-                "SeriesDescription": "FH_ME3_1.75mm_SMS3_TR770_SBRef",
-                "EchoNumber": 2
-            },
-             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME3TR770_echo-02",
-                "TaskName": "localizer"
-            }
-
-        },
-
-        {   
-            "id": "sbref_task-localizer_acq-ME3TR770_echo-03",
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-ME3TR770_echo-03",
-            "criteria": {
-                "SeriesDescription": "FH_ME3_1.75mm_SMS3_TR770_SBRef",
-                "EchoNumber": 3
-            },
-             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME3TR770_echo-03",
-                "TaskName": "localizer"
-            }
-        },
-    
-        {
-            "id": "id_task-localizer_acq-ME3TR680_echo-01",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR680_echo-01",
-            "criteria": {
-                "SeriesDescription": "ME3_1.75mm_SMS4_TR680",
-                "EchoNumber": 1
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR680_echo-01_part-phase",
-            "criteria": {
-                "SeriesDescription": "ME3_1.75mm_SMS4_TR680_Pha",
-                "EchoNumber": 1
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-ME3TR680_echo-01"
-            }
-        },
-
-        {
-            "id": "id_task-localizer_acq-ME3TR680_echo-02",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR680_echo-02",
-            "criteria": {
-                "SeriesDescription": "ME3_1.75mm_SMS4_TR680",
-                "EchoNumber": 2
-            },
-            "sidecar_changes": {
-                "TaskName" : "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR680_echo-02_part-phase",
-            "criteria": {
-                "SeriesDescription": "ME3_1.75mm_SMS4_TR680_Pha",
-                "EchoNumber": 2
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-ME3TR680_echo-02"
-            }
-        },
-
-        {
-            "id": "id_task-localizer_acq-ME3TR680_echo-03",
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR680_echo-03",
-            "criteria": {
-                "SeriesDescription": "ME3_1.75mm_SMS4_TR680",
-                "EchoNumber": 3
-            },
-            "sidecar_changes": {
-                "TaskName": "localizer"
-            }
-        },
-
-        {
-            "datatype": "func",
-            "suffix": "bold",
-            "custom_entities": "task-localizer_acq-ME3TR680_echo-03_part-phase",
-            "criteria": {
-                "SeriesDescription": "ME3_1.75mm_SMS4_TR680_Pha",
-                "EchoNumber": 3
-            },
-            "sidecar_changes": {
-                "Units": "rad",
-                "TaskName": "localizer",
-                "IntendedFor": "id_task-localizer_acq-ME3TR680_echo-03"
-            }
-        },
-
-        {
-            "datatype": "fmap",
-            "suffix": "epi",
-            "custom_entities": "acq-ME3TR680_dir-AP",
-            "criteria": {
-                "SeriesDescription": "SE_AP_ME3_1.75mm_SMS4_TR680"
-            },
-            "sidecar_changes": {
-                "IntendedFor": ["id_task-localizer_acq-ME3TR680_echo-01",
-                                "id_task-localizer_acq-ME3TR680_echo-02",
-                                "id_task-localizer_acq-ME3TR680_echo-03"]
-            }   
-        },
-
-        {
-            "datatype": "fmap",
-            "suffix": "epi",
-            "custom_entities": "acq-ME3TR680_dir-PA",
-            "criteria": {
-                "SeriesDescription": "SE_PA_ME3_1.75mm_SMS4_TR680"
-            },
-             "sidecar_changes": {
-                "IntendedFor": ["id_task-localizer_acq-ME3TR680_echo-01",
-                                "id_task-localizer_acq-ME3TR680_echo-02",
-                                "id_task-localizer_acq-ME3TR680_echo-03"]
-            }  
-        },
-
-        {
-            "id": "sbref_task-localizer_acq-ME3TR680_echo-01",
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-ME3TR680_echo-01",
-            "criteria": {
-                "SeriesDescription": "FH_ME3_1.75mm_SMS4_TR680_SBRef",
-                "EchoNumber": 1
-            },
-             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME3TR680_echo-01",
-                "TaskName": "localizer"
-            }
-        },
-
-        {   
-            "id": "sbref_task-localizer_acq-ME3TR680_echo-02",
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-ME3TR680_echo-02",
-            "criteria": {
-                "SeriesDescription": "FH_ME3_1.75mm_SMS4_TR680_SBRef",
-                "EchoNumber": 2
-            },
-             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME3TR680_echo-02",
-                "TaskName": "localizer"
-            }
-
-        },
-
-        {   
-            "id": "sbref_task-localizer_acq-ME3TR680_echo-03",
-            "datatype": "func",
-            "suffix": "sbref",
-            "custom_entities": "task-localizer_acq-ME3TR680_echo-03",
-            "criteria": {
-                "SeriesDescription": "FH_ME3_1.75mm_SMS4_TR680_SBRef",
-                "EchoNumber": 3
-            },
-             "sidecar_changes": {
-                "IntendedFor": "id_task-localizer_acq-ME3TR680_echo-03",
-                "TaskName": "localizer"
+                "PulseSequenceName": "epfid2d1_102",
+                "InstitutionalDepartmentName": "BCBL"
             }
         }
     ]    

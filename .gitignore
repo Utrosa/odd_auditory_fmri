@@ -3,9 +3,16 @@ data_logs/
 data_MRI/
 data_physio/
 examples/
+presentations/
+results/
+results_tSNR/
 **/derivatives/
 **/sourcedata/
 **/sidecars/
 **/raw/
 **/__pycache__/
 **/ipynb_checkpoints/
+
+# Untracked files
+*.odt
+*.txt

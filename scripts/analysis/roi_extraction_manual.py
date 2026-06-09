@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-# Time-stamp: <2025-17-02 m.utrosa@bcbl.eu>
+# Time-stamp: <2025-18-09 m.utrosa@bcbl.eu>
 # -----------------------------------------------------------------------------
 # Extracting values from collected data within ROI masks from Sitek's atlas
 # DOI: 10.7554/eLife.48932
@@ -7,16 +7,14 @@
 
 # Import python packages
 import os, bids
-import argparse
 import pandas as pd
 import numpy as np
 import nibabel as nib
 import seaborn as sns
-from pathlib import Path
 import matplotlib.pyplot as plt
 
 # Import custom-made functions
-from scripts import grabber
+import grabber
 
 # -----------------------------------------------------------------------------
 # DEFINE FUNCTIONS
@@ -120,8 +118,22 @@ def plot_violins(mask_paths, subID, sesID, acqIDs, out_dir, scale):
 		plt.savefig(fig_path, dpi = 200, bbox_inches = "tight")
 		plt.close(fig)
 
-def roi_extraction(subID, sesID, ts, homePath, atlasPath, acqIDs):
+# -----------------------------------------------------------------------------
+# EXAMPLE USAGE
+# -----------------------------------------------------------------------------
+if __name__ == "__main__":
+	
+	# Define subject and session info -----------------------------------------
+	subID = 4
+	sesID = 1
 
+	if sesID == 1:
+		acqIDs = ["NOACC15", "NOACC16"]
+
+	# # Pilot 03 acquisition labels
+	# if sesID == 1:
+	# 	acqIDs = ["PF78", "NOACC", "GRAPPA"]
+		
 	# Define ROIs -------------------------------------------------------------
 	# Size represents the volume (mm3) of auditory subcortical structures in
 	# their in-vivo functional clusters. See Table 1 in Sitek et al. (2019).
@@ -135,39 +147,19 @@ def roi_extraction(subID, sesID, ts, homePath, atlasPath, acqIDs):
 			'MGB-L' : {'size': 152, 'label': 7},
 			'MGB-R' : {'size': 152, 'label': 8}}
 
-	# Specify output directory
-	homePath = Path(homePath)
-	res_dir  = homePath / f"results_{ts}"
-	out_dir  = res_dir / "visualization"
+	homePath   = "/home/mutrosa/Documents/projects/select_fMRI"
+	atlas_path = homePath + "/templates/atlas/invivo_resampled_to-MNI_res-01.nii.gz"
+	MNI_path   = homePath + "/templates/tpl-MNI152NLin2009cAsym_res-01_T1w.nii.gz"
+	out_dir    = homePath + "/results/visualization"
 	os.makedirs(out_dir, exist_ok=True)
 	
 	# Extract data from ROIs --------------------------------------------------
 	mask_paths = {}
 	for acqID in acqIDs:
-		spmT_path  = res_dir / f"1stLevel/sub-{subID:02d}/ses-{sesID:02d}/acq-{acqID}/spmT_space-MNI_0001_trans_out.nii.gz"
-		masks, mask_path = extract_roi_array(subID, sesID, acqID, atlasPath, spmT_path, rois, out_dir)
+		print(acqID)
+		spmT_path  = homePath + f"/results/1stLevel/sub-{subID:02d}/ses-{sesID:02d}/acq-{acqID}/spmT_space-MNI_0001_trans_out.nii.gz"
+		masks, mask_path = extract_roi_array(subID, sesID, acqID, atlas_path, spmT_path, rois, out_dir)
 		mask_paths[acqID] = mask_path
-
-
-if __name__ == "__main__":
-	
-	parser = argparse.ArgumentParser()
-	parser.add_argument("subID", type=int)
-	parser.add_argument("sesID", type=int)
-	parser.add_argument("ts",    type=int)
-	parser.add_argument("homePath")
-	parser.add_argument("atlasPath")
-	parser.add_argument("acqIDs",  nargs="+")
-
-	args = parser.parse_args()
-	roi_extraction(
-		args.subID,
-		args.sesID,
-		args.ts,
-		args.homePath,
-		args.atlasPath,
-		args.acqIDs
-		)
 
 	# Plotting ----------------------------------------------------------------
 	plot_violins(mask_paths, subID, sesID, acqIDs, out_dir, scale=True)

@@ -1,5 +1,6 @@
 {
     "descriptions": [
+
         {
             "datatype": "anat",
             "suffix": "MP2RAGE",
@@ -10,7 +11,7 @@
             }
         },
 
-            {
+        {
             "datatype": "anat",
             "suffix": "UNIT1",
             "criteria": {
@@ -19,7 +20,7 @@
             }
         },
         
-            {
+        {
             "datatype": "anat",
             "suffix": "MP2RAGE",
             "custom_entities": "inv-2",
@@ -29,7 +30,7 @@
             }
         },
 
-            {
+        {
             "id": "id_task-localizer_acq-DresdenNoFat",
             "datatype": "func",
             "suffix": "bold",
@@ -38,7 +39,8 @@
                 "SeriesDescription": "Dresden_1.5mm_SMS1_TR2100_noFatSat"
             }
         },
-            {
+
+        {
             "datatype": "fmap",
             "suffix": "epi",
             "custom_entities": "acq-DresdenNoFat_dir-AP",
@@ -49,6 +51,7 @@
                 "IntendedFor": "id_task-localizer_acq-DresdenNoFat"
             }
         },
+
         {
             "datatype": "fmap",
             "suffix": "epi",
@@ -60,7 +63,8 @@
                 "IntendedFor": "id_task-localizer_acq-DresdenNoFat"
             }
         },
-            {
+        
+        {
             "id": "id_task-localizer_acq-DresdenWFat",
             "datatype": "func",
             "suffix": "bold",
@@ -69,6 +73,7 @@
                 "SeriesDescription": "Dresden_1.5mm_SMS1_TR2400_wFatSat"
             }
         },
+
         {
             "datatype": "fmap",
             "suffix": "epi",
@@ -80,6 +85,7 @@
                 "IntendedFor": "id_task-localizer_acq-DresdenWFat"
             }
         },
+
         {
             "datatype": "fmap",
             "suffix": "epi",
@@ -91,7 +97,8 @@
                 "IntendedFor": "id_task-localizer_acq-DresdenWFat"
             }
         },
-            {
+
+        {
             "id": "id_task-localizer_acq-ME1TR880_echo-01",
             "datatype": "func",
             "suffix": "bold",
@@ -100,6 +107,7 @@
                 "SeriesDescription": "ME1_1.5mm_SMS2_TR880"
             }
         },
+
         {
             "datatype": "fmap",
             "suffix": "epi",
@@ -111,6 +119,7 @@
                 "IntendedFor": "id_task-localizer_acq-ME1TR880_echo-01"
             }
         },
+
         {
             "datatype": "fmap",
             "suffix": "epi",
@@ -122,6 +131,7 @@
                 "IntendedFor": "id_task-localizer_acq-ME1TR880_echo-01"
             }            
         },
+
         {
             "datatype": "func",
             "suffix": "sbref",
@@ -130,7 +140,8 @@
                 "SeriesDescription": "ME1_1.5mm_SMS2_TR880_SBRef"
             }
         },
-            {
+
+        {
             "id": "id_task-localizer_acq-ME3TR1600_echo-01",
             "datatype": "func",
             "suffix": "bold",
@@ -140,6 +151,7 @@
                 "EchoNumber": 1
             }
         },
+
         {
             "id": "id_task-localizer_acq-ME3TR1600_echo-02",
             "datatype": "func",
@@ -150,6 +162,7 @@
                 "EchoNumber": 2
             }
         },
+
         {
             "id": "id_task-localizer_acq-ME3TR1600_echo-03",
             "datatype": "func",
@@ -160,6 +173,7 @@
                 "EchoNumber": 3
             }
         },
+
         {
             "datatype": "fmap",
             "suffix": "epi",
@@ -173,6 +187,7 @@
                                 "id_task-localizer_acq-ME3TR1600_echo-03"]
             }   
         },
+        
         {
             "datatype": "fmap",
             "suffix": "epi",

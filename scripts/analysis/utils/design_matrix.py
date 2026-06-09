@@ -1,4 +1,4 @@
-def localizer(logfilepath):
+def parse_logfile(logfilepath, n_rows_skipped = 3):
 	"""
 	Parse logfiles into design matrix in NiPype Bunch format.
 
@@ -9,25 +9,27 @@ def localizer(logfilepath):
 	    list: A list of Bunch objects containing design information.
 	"""
 	import csv
-	from nipype.interfaces.base import Bunch
 	
 	# Get info on stimuli onset, duration and key presses.
 	sounds, silences, keypress, sound_prev = [], [], [], []
 	with open(logfilepath, 'r') as logfile:
 
-		next(logfile) # Skip header row
+		# Skip rows with expyriment software info, timestamp and header
+		for _ in range(n_rows_skipped):
+			next(logfile)
 
-		# Auto-detect delimiter (should be tab)
+		# Determine the delimiter of the logfiles automatically
 		sample  = logfile.read(3000); logfile.seek(0)
 		dialect = csv.Sniffer().sniff(sample, delimiters = [";", "\t" , ","])
-
-		# Read the logfile
 		logTsv  = csv.reader(logfile, dialect)
-		next(logTsv) # Skip header again
+
+		# Skip rows again (we're accessing log info differently).
+		for _ in range(n_rows_skipped):
+			next(logTsv)
 
 		for line in logTsv:
 			event     = {'onset': float(line[0]), 'duration': float(line[1])}
-			stim_file = line[2] # sound or silence
+			stim_file = line[2]
 
 			# Silences
 			if stim_file == 'null_event.wav':
@@ -43,17 +45,25 @@ def localizer(logfilepath):
 						keypress.append(event)
 
 			# Sounds with key press after
-			elif stim_file == 'n/a':
-				if line[4] != 'n/a':
+			elif stim_file == 'n/a' and line[4] != 'n/a':
 					keypress.append(event)
 			else:
 				print('WARNING: Skipping unrecognised line "{}"'.format(line))
 
+		return sounds, silences, keypress
+
+def localizer(logfilepath):
+	
+	from nipype.interfaces.base import Bunch
+	sounds, silences, keypress = parse_logfile(logfilepath)
+	
 	# Incorporate into design info
 	conditions = ['sound', 'silence', 'keypress']
 	onsets     = [[on['onset'] for on in cond] for cond in [sounds, silences, keypress]]
 	durations  = [[du['duration'] for du in cond] for cond in [sounds, silences, keypress]]
+	
 	design_info = Bunch(conditions = conditions,
 				   		onsets     = onsets,
 				   		durations  = durations)
+	
 	return design_info

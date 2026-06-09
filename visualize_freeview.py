@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Time-stamp: <2025-11-24 m.utrosa@bcbl.eu>
+
 import argparse, glob, os
 from pathlib import Path
 
@@ -59,10 +61,10 @@ def find_bids_files(bids_dir, sub, ses, modalities, acq=None, task=None, directi
 def launch_freeview(file_list, bids_dir, sub):
     """Launch Freeview with os.system."""
     if not file_list:
-        print("\n❌ No matching BIDS files found.")
+        print("\n No matching BIDS files found.")
         return
 
-    print("\n🧠 Launching Freeview with files:")
+    print("\n Launching Freeview with files:")
     for f in file_list:
         print("  ", f)
 

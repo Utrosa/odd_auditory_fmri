@@ -1,11 +1,12 @@
 #! /usr/bin/env python
-# Time-stamp: <2025-04-09 m.utrosa@bcbl.eu>
+# Time-stamp: <2026-01-28 m.utrosa@bcbl.eu>
 
 # Import python packages
 from nipype import Node, Workflow, IdentityInterface, Function
 import nipype.algorithms.modelgen as model
 from nipype.interfaces import freesurfer, spm, ants
 from nipype.interfaces.io import DataSink
+from nipype.interfaces.utility import Merge
 
 # Import custom-made functions (scripts)
 import grabber
@@ -15,29 +16,41 @@ from designs_v02 import localizer
 # -------------------------------------------------------------------------------------------------
 # 00. Experiment Parameters
 # -------------------------------------------------------------------------------------------------
-sub_list   = [4]
-ses_list   = [2]
+sub_list = [4]
+ses_list = [1]
+sesID = ses_list[0]
 
-# For sub-01
-# acqID_list = ["DresdenNoFat", "DresdenWFat", "ME1TR880", "ME3TR1600", "ME3TR1100", "ME3TR850", "ME3TR700"]
+# Pilot 04 acquisition labels
+if sesID == 1:
+	acqID_list = ["NOACC15", "NOACC16"]
 
-# For sub-02
-# acqID_list = ["DresdenNoFat", "DresdenWFat", "ME1TR880", "ME3TR1600"]
+# Pilot 03 acquisition labels
+# if sesID == 1:
+# 	acqID_list = ["PF78", "NOACC", "GRAPPA"]
 
-# For sub-03
-# acqID_list = ["DresdenNoFat", "DresdenWFat", "ME1TR880", "ME3TR1600", "ME3TR1100", "ME3TR850", "ME3TR700"]
-# acqID_list = ["DresdenNoFat175", "DresdenWFat175", "ME1TR780", "ME3TR1180", "ME3TR770", "ME3TR680"]
+# Single-echo acquisition labels
+# if sesID == 1:
+# 	acqID_list = ["DresdenNoFat", "DresdenWFat", "ME1TR880"]
+# elif sesID == 2: # sub-02
+# 	acqID_list = ["DresdenWFat175", "ME1TR780"]
+# elif sesID == 3: # sub-01
+# 	acqID_list = ["DresdenNoFat175", "DresdenWFat175", "ME1TR780"]
 
-# For sub-04
-# acqID_list = ["DresdenNoFat", "DresdenWFat", "ME1TR880"]
-acqID_list = ["ME3TR1600", "ME3TR1100", "ME3TR850", "ME3TR700", "DresdenNoFat175", "DresdenWFat175",
-  			  "ME1TR780", "ME3TR1180", "ME3TR770", "ME3TR680"]
+# Full dataset acquisition labels
+# if sesID == 1:
+# 	acqID_list = ["DresdenNoFat", "DresdenWFat", "ME1TR880", "ME3TR1600", "ME3TR1100", "ME3TR850", "ME3TR700"] # ses-01
+# elif sesID == 2:
+# 	acqID_list = ["DresdenWFat175", "ME1TR780", "ME3TR1180", "ME3TR770", "ME3TR680"] # ses-02 sub-02
+# elif sesID == 3:
+# 	acqID_list = ["DresdenNoFat175", "DresdenWFat175", "ME1TR780", "ME3TR1180", "ME3TR770", "ME3TR680"] # ses-03 sub-01
 
-homePath   = '/home/mutrosa/Documents/projects/localizer_fMRI'
+# Set up project root and define needed folders
+homePath   = '/home/mutrosa/Documents/projects/select_fMRI'
 tmp_dir    = homePath + '/scripts/analysis/tmp'
 out_dir    = homePath + "/results"
 hrf_dervs  = [0, 0] # using the canonical hrf (without derivatives)
 volterra   = False
+smoothing  = None # Set the Gaussian filter width in mm, default is None
 contrasts  = [('localizer', 'T', ['sound', 'silence'], [1, -1])]
 MNI        = homePath + "/templates/tpl-MNI152NLin2009cAsym_res-01_T1w.nii.gz" # the same as in fMRIprep !
 
@@ -52,12 +65,17 @@ infosource.iterables = [('subID', sub_list),
 						('sesID', ses_list),
 						('acqID', acqID_list)]
 
-# Datasink: create output folder for important outputs
-datasink = Node(DataSink(base_directory = tmp_dir,
-                         container = out_dir),
-                name = "datasink")
+# T1w Datasink: create output folder for important outputs in T1w space
+datasink_T1w = Node(DataSink(base_directory = tmp_dir,
+                             container = out_dir),
+                name = "datasink_T1w")
 
-# Output substitutions: correct Datasink output folder structure
+# MNI Datasink: create output folder for important outputs in MNI space
+datasink_MNI = Node(DataSink(base_directory = tmp_dir,
+                         	 container = out_dir),
+                name = "datasink_MNI")
+
+# Output substitutions: correct all Datasink output folder structures
 substitutions = []
 subjFolders = [('_acqID_%s_sesID_%s_subID_%s' % (acq, ses, sub),
 				'sub-0%s/ses-0%s/acq-%s' % (sub, ses, acq))
@@ -65,11 +83,21 @@ subjFolders = [('_acqID_%s_sesID_%s_subID_%s' % (acq, ses, sub),
                for ses in ses_list
                for sub in sub_list]
 substitutions.extend(subjFolders)
-datasink.inputs.substitutions = substitutions
+datasink_T1w.inputs.substitutions = substitutions
+datasink_T1w.inputs.substitutions += [('spmT_', 'spmT_space-T1w_'),]
+datasink_T1w.inputs.substitutions += [('SPM',   'SPM_space-T1w'),]
+datasink_T1w.inputs.substitutions += [('con_',  'con_space-T1w_'),]
+
+datasink_MNI.inputs.substitutions = substitutions
+datasink_MNI.inputs.substitutions += [('spmT_', 'spmT_space-MNI_'),]
 
 # Define a Node that extracts filepaths for all files required for the analysis.
 infohandle = Node(Function(input_names  = ["subID", "sesID", "acqID", "homePath"],
-						   output_names = ["log_path", "bold_path", "mask_path", "conf_path", "out_path", "T1w_path", "T1w_toMNI_path", "fsNative_toT1w_path", "TR"], 
+						   output_names = [
+						   "log_path", "bold_path", "mask_path", "conf_path",
+						   "out_path", "T1w_path", "T1w_toMNI_path", "orig_to_boldref_path",
+						   "boldref_to_T1w_path", "TR"
+						   				  ], 
 						   function = grab_objects),
 				name = "infohandle")
 infohandle.inputs.homePath = homePath
@@ -84,6 +112,11 @@ design_bunch = Node(Function(input_names  = ["logfilepath"],
 # Unzip funcional image (preprocessed BOLD).
 unzip = Node(freesurfer.MRIConvert(out_type = 'nii'),
 			 name = 'unzip')
+
+# Smoothing
+if smoothing is not None:
+	smoother = Node(spm.Smooth(fwhm = [smoothing, smoothing, smoothing]),
+					name="smooth")
 
 # SpecifyModel: generate SPM-specific godel.
 modeler = Node(model.SpecifySPMModel(concatenate_runs = False,
@@ -106,16 +139,17 @@ estimator = Node(spm.EstimateModel(estimation_method = {'Classical': 1}),
 contrastor = Node(spm.EstimateContrast(contrasts = contrasts),
 				  name = 'contrastor')
 
-# Move data from T1 to MNI space with ANTS.
-warper = Node(ants.ApplyTransforms(reference_image = MNI,
-								   dimension = 3,
-								   interpolation = 'Linear',
-								   invert_transform_flags = [False], # transform flag = 0
+# Move data from T1 to MNI space with ANTS. Not necessary if input already in MNI !
+# https://nipype.readthedocs.io/en/latest/api/generated/nipype.interfaces.ants.html
+warper = Node(ants.ApplyTransforms(dimension = 3,
+								   interpolation = 'Linear', # Default: Linear
+								   reference_image = MNI,
+								   invert_transform_flags = [False], # transform flag set to 0 and as many as transforms (see no. of "transformer" inputs!)
 								   args = '--float'),
 			 name = 'warper')
 
 # Convert to .nii.gz
-zipper = Node(freesurfer.MRIConvert(out_type='niigz'), name = 'zipper')
+zipper = Node(freesurfer.MRIConvert(out_type = 'niigz'), name = 'zipper')
 
 # -------------------------------------------------------------------------------------------------
 # 02. Connect the Nodes
@@ -127,13 +161,25 @@ l1_localizer.connect([(infosource, infohandle, [("subID", "subID"),
 												("acqID", "acqID")])])
 l1_localizer.connect([(infohandle, design_bunch, [("log_path", "logfilepath")])])
 l1_localizer.connect([(infohandle, unzip, [("bold_path", "in_file")])])
-l1_localizer.connect([
-				(unzip, modeler, [("out_file", "functional_runs")]),
-				(infohandle, modeler, [("out_path", "outlier_files"),
-									   ("conf_path", "realignment_parameters")]),
-				(design_bunch, modeler, [("design_info", "subject_info")]),
-				(infohandle, modeler, [("TR", "time_repetition")])
-				])
+
+if smoothing is not None:
+	l1_localizer.connect([(unzip, smoother, [("out_file", "in_files")])])
+	l1_localizer.connect([
+					(smoother, modeler, [("smoothed_files", "functional_runs")]),
+					(infohandle, modeler, [("out_path", "outlier_files"),
+										   ("conf_path", "realignment_parameters")]),
+					(design_bunch, modeler, [("design_info", "subject_info")]),
+					(infohandle, modeler, [("TR", "time_repetition")])
+					])
+else:
+	l1_localizer.connect([
+					(unzip, modeler, [("out_file", "functional_runs")]),
+					(infohandle, modeler, [("out_path", "outlier_files"),
+										   ("conf_path", "realignment_parameters")]),
+					(design_bunch, modeler, [("design_info", "subject_info")]),
+					(infohandle, modeler, [("TR", "time_repetition")])
+					])
+
 l1_localizer.connect([
 				(modeler, designer, [("session_info", "session_info")]),
 				(infohandle, designer, [("TR", "interscan_interval")])
@@ -147,19 +193,19 @@ l1_localizer.connect([
 				(estimator, contrastor, [("residual_image", "residual_image")]),
 				])
 l1_localizer.connect([
-				(infohandle, warper, [("T1w_toMNI_path", "transforms")]),
-				(contrastor, warper, [("spmT_images", "input_image")])
+				(infohandle, warper, [('T1w_toMNI_path', 'transforms')]),
+				(contrastor, warper,  [('spmT_images', 'input_image')])
+				])
+l1_localizer.connect([
+				(contrastor, datasink_T1w, [('spm_mat_file', '1stLevel.@spm_mat'),
+                                        ('spmT_images', '1stLevel.@T'),
+                                        ('con_images', '1stLevel.@con')])
 				])
 l1_localizer.connect([
 				(warper, zipper, [("output_image", "in_file")])
 				])
 l1_localizer.connect([
-				(contrastor, datasink, [('spm_mat_file', '1stLevel.@spm_mat'),
-                                        ('spmT_images', '1stLevel.@T'),
-                                        ('con_images', '1stLevel.@con')])
-				])
-l1_localizer.connect([
-				(zipper, datasink, [('out_file', '1stLevel.@T_warped')])
+				(zipper, datasink_MNI, [('out_file', '1stLevel.@T_warped')])
 				])
 
 # -------------------------------------------------------------------------------------------------

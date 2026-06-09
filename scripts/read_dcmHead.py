@@ -1,13 +1,22 @@
+#! /usr/bin/env python
+# Script to read dicom headers
+# Focus on:
+# 	* PhaseEncodingDirection
+# 	* RepetitionTimePreparation
+# 	* ImageOrientationPatient
+
 import os, pydicom
 
+# Environment: conda activate localizer_fMRI
 # Specify project-specific info
-sub = 1
+sub = 2
 ses = 1
 pro = "SubCort_HighRes"
 
 # Get directories and files
 homeDir   = "/home/mutrosa/Documents/projects/select_fMRI/"
 dicomFold = f"data_MRI/sourcedata/dicoms/sub-{sub:02d}_ses-{ses:02d}_{pro}/"
+seqFold   = "t1_mp2rage_sag_p3_1iso_INV1_24"
 
 # DERIVATIVES WITH HORIZONTAL FMAP REGISTRATION -------------------------------
 # seqFold   = "ME1_1.5mm_SMS2_TR880_28"  #ses-01
@@ -46,24 +55,50 @@ dicomFold = f"data_MRI/sourcedata/dicoms/sub-{sub:02d}_ses-{ses:02d}_{pro}/"
 dicom_folder = homeDir+dicomFold+seqFold
 print(dicom_folder)
 
-## ----------------- Phase Encoding Direction ---------------------------------
+# ----------------- Image Orientation Patient ---------------------------------
 files = [os.path.join(dicom_folder, f) for f in os.listdir(dicom_folder)]
 for df in files:
 	dicom_file = df
 	ds = pydicom.dcmread(dicom_file, stop_before_pixels=True)
 
-	# Find the PED in the header dataset
-	shared_func_seq = ds.get((0x5200, 0x9229), None)
-	if shared_func_seq:
-	    for item in shared_func_seq:
+	#
+	print(ds)
+	break
 
-	        # MR FOV/Geometry Sequence
-	        fov_seq = item.get((0x0018, 0x9125), None)
-	        if fov_seq:
-	            for fov_item in fov_seq:
-	                ped = fov_item.get((0x0018, 0x1312), None)
-	                if ped:
-	                    print("In-plane Phase Encoding Direction:", ped.value)
+	# Find the IOP in the header dataset: Per-frame Functional Groups Sequence
+	per_frame_shared_func_seq = ds.get((0x5200, 0x9230), None)
+	if per_frame_shared_func_seq:
+		for item in per_frame_shared_func_seq:
+
+			# Plane Orientation Sequence
+			plane_orient_seq = item.get((0x0020, 0x9116), None)
+			for pos_item in plane_orient_seq:
+				pos = pos_item.get((0x0020, 0x0037), None)
+				if pos:
+					print("ImageOrientationPatient:", pos.value)
+					break
+			break
+		break	
+	break
+
+## ----------------- Phase Encoding Direction ---------------------------------
+# files = [os.path.join(dicom_folder, f) for f in os.listdir(dicom_folder)]
+# for df in files:
+# 	dicom_file = df
+# 	ds = pydicom.dcmread(dicom_file, stop_before_pixels=True)
+
+# 	# Find the PED in the header dataset: Shared Functional Groups Sequence
+# 	shared_func_seq = ds.get((0x5200, 0x9229), None)
+# 	if shared_func_seq:
+# 	    for item in shared_func_seq:
+
+# 	        # MR FOV/Geometry Sequence
+# 	        fov_seq = item.get((0x0018, 0x9125), None)
+# 	        if fov_seq:
+# 	            for fov_item in fov_seq:
+# 	                ped = fov_item.get((0x0018, 0x1312), None)
+# 	                if ped:
+# 	                    print("In-plane Phase Encoding Direction:", ped.value)
 
 ## ----------- RepetitionTimePreparation for anatomical scans ------------------
 

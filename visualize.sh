@@ -1,3 +1,5 @@
+#! /usr/bin/env bash
+# Time-stamp: <2025-11-24 m.utrosa@bcbl.eu>
 
 # ---- 1.5 mm
 # acq-DresdenNoFat
@@ -17,5 +19,5 @@
 # acq-ME3TR680
 
 python visualize_freeview.py \
-  --bids_dir /home/mutrosa/Documents/projects/select_fMRI/data_MRI/sourcedata/raw \
-  --sub 01 --ses 03 --modalities fmap bold sbref --acq ME1TR780
+  --bids_dir /home/mutrosa/Documents/projects/select_fMRI/data_MRI/sourcedata/raw/raw_withNORDIC \
+  --sub 02 --ses 01 --modalities bold --acq NOACC

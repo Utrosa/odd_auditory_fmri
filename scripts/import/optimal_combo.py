@@ -1,28 +1,38 @@
-#! /usr/bin/env python
-# Optimally combine multi-echo fMRI images
-# Using t2smap workflow from tedana
-# DOI: 10.21105/joss.03669
-# Time-stamp: <08-12-2025 m.utrosa@bcbl.eu>
+#!/usr/bin/env python
+# Time-stamp: <10-02-2026 m.utrosa@bcbl.eu>
+"""
+Optimally combine multi-echo fMRI images using the t2smap workflow from tedana.
+
+Reference
+---------
+DOI: 10.21105/joss.03669
+https://github.com/ME-ICA/tedana
+"""
 
 # Import python packages
-import bids, json, os, sys
+import argparse, bids, json
 from tedana import workflows
+from pathlib import Path
 
 # Import custom-made functions
 from scripts import grabber
 
-def optimal_combo(subID, sesID, task, homePath):
+def optimal_combo(subID, sesID, task, homePath, me_acqIDs):
+	'''
+	Optimally combine multi-echo fMRI data with tedana's t2smap workflow.
 
-	# Study-specific parameters
-	if sesID == 1:
-		me_acq = ["ME3TR1100", "ME3TR1600", "ME3TR700", "ME3TR850"] # ses-01
-	else: 
-		me_acq = ["ME3TR1180", "ME3TR680", "ME3TR770"] # ses-02 or ses-03
-
+	Parameters:
+	    subID: Subject identifier.
+	    sesID: Session identifier.
+	    task: Name of the experimental task that the subject was asked to do.
+	    homePath: Base directory of the project.
+	    me_acqIDs: List of multi-echo acquisition labels.
+	'''
 	# Directories
-	out_dir  = os.path.join(homePath, "data_MRI/sourcedata/t2smap")
-	func_dir = os.path.join(homePath, "data_MRI/sourcedata/denoised/")
-	raw_dir  = os.path.join(homePath, "data_MRI/sourcedata/raw/")
+	homePath = Path(homePath)
+	out_dir =  homePath / "data_MRI" / "sourcedata" / "t2smap"
+	raw_dir  = homePath / "data_MRI" / "sourcedata" / "raw"
+	out_dir.mkdir(exist_ok=True, parents=True)
 
 	# Grab data per multi-echo (ME) acquisition
 	me_files = {}
@@ -30,31 +40,31 @@ def optimal_combo(subID, sesID, task, homePath):
 	sbref_files = {}
 	sbref_jsons = {}
 
-	for acqID in me_acq:
+	for acqID in me_acqIDs:
 
-		# Grab functional images
-		func_layout = bids.layout.BIDSLayout(func_dir, validate=False)
-		func_config = grabber.define_grabconf(subID, sesID, "bold", "nii.gz", acquisition=acqID)
-		func_img    = grabber.grab_BIDS_object(func_dir, func_layout, func_config)
-		me_files[acqID] = [f.path for f in func_img]
-
-		# Grab json files for bold images (not part-phase)
+		# Grab bold images
 		raw_layout = bids.layout.BIDSLayout(raw_dir, validate=False)
-		func_json_config = grabber.define_grabconf(subID, sesID, "bold", "json", acquisition=acqID)
-		func_json_img    = grabber.grab_BIDS_object(raw_dir, raw_layout, func_json_config)
+		func_conf  = grabber.define_grabconf(subID, sesID, "bold", "nii.gz", acquisition=acqID)
+		func_img   = grabber.grab_BIDS_object(raw_dir, raw_layout, func_conf)
+		me_files[acqID] = [f.path for f in func_img if "part-phase" not in f.path]
+
+		# Grab json files for these bold images (not part-phase)
+		func_json_conf  = grabber.define_grabconf(subID, sesID, "bold", "json", acquisition=acqID)
+		func_json_img   = grabber.grab_BIDS_object(raw_dir, raw_layout, func_json_conf)
 		me_jsons[acqID] = [fj.path for fj in func_json_img if "part-phase" not in fj.path]
 
 		# Grab single-band references
-		sbref_config = grabber.define_grabconf(subID, sesID, "sbref", "nii.gz", acquisition=acqID)
-		sbref_img    = grabber.grab_BIDS_object(raw_dir, raw_layout, sbref_config)
+		sbref_conf = grabber.define_grabconf(subID, sesID, "sbref", "nii.gz", acquisition=acqID)
+		sbref_img  = grabber.grab_BIDS_object(raw_dir, raw_layout, sbref_conf)
 		sbref_files[acqID] = [sb.path for sb in sbref_img]
 
 		# Grab json files for sbref
-		sbref_json_config = grabber.define_grabconf(subID, sesID, "sbref", "json", acquisition=acqID)
-		sbref_json_img    = grabber.grab_BIDS_object(raw_dir, raw_layout, sbref_json_config)
+		sbref_json_conf = grabber.define_grabconf(subID, sesID, "sbref", "json", acquisition=acqID)
+		sbref_json_img  = grabber.grab_BIDS_object(raw_dir, raw_layout, sbref_json_conf)
 		sbref_jsons[acqID] = [sbj.path for sbj in sbref_json_img]
 
 	# Exctract echo times from json files and convert seconds → msec
+	# ---- Functional images ----
 	func_echo_times = {}
 	for me in me_jsons:
 		values = me_jsons[me]
@@ -65,6 +75,7 @@ def optimal_combo(subID, sesID, task, homePath):
 				e_times.append(metadata["EchoTime"] * 1000)
 		func_echo_times[me] = e_times
 
+	# ---- Single-band reference images ----
 	sbref_echo_times = {}
 	for me in sbref_jsons:
 		values = sbref_jsons[me]
@@ -75,58 +86,45 @@ def optimal_combo(subID, sesID, task, homePath):
 				e_times.append(metadata["EchoTime"] * 1000)
 		sbref_echo_times[me] = e_times
 	
-	# Combine echos
+	# Optimally combine echos
 	for me in me_files:
-
 		print(f"\n*** Combining echos for acquisition ID: {me} ***\n")
 
-		# Functional images
+		# ---- Functional images ----
 		combined_me = workflows.t2smap_workflow(
-							data = me_files[me],   # echos in ascending order
+							data = me_files[me],        # echos in ascending order
 							tes  = func_echo_times[me], # in milliseconds
-							out_dir = out_dir,
-							prefix  = f"sub-{subID:02d}_ses-{sesID:02d}_task-{task}_acq-{me}",
-							fittype = 'curvefit', # {‘loglin’, ‘curvefit’}, optional
+							out_dir  = out_dir,
+							prefix   = f"sub-{subID:02d}_ses-{sesID:02d}_task-{task}_acq-{me}",
+							fittype  = 'curvefit', # {‘loglin’, ‘curvefit’}, optional
 							fitmode  = 'all', # {‘all’, ‘ts’}, optional
 							combmode = 't2s'  # ‘t2s’ (Posse 1999), ‘paid’ (Poser)
 						)
 
-		# Single-band reference images
+		# ---- Single-band reference images ----
 		combined_me = workflows.t2smap_workflow(
-							data = sbref_files[me],   # echos in ascending order
+							data = sbref_files[me],      # echos in ascending order
 							tes  = sbref_echo_times[me], # in milliseconds
-							out_dir = out_dir,
-							prefix  = f"sub-{subID:02d}_ses-{sesID:02d}_task-{task}_acq-{me}_sbref",
-							fittype = 'curvefit', # {‘loglin’, ‘curvefit’}, optional
+							out_dir  = out_dir,
+							prefix   = f"sub-{subID:02d}_ses-{sesID:02d}_task-{task}_acq-{me}_sbref",
+							fittype  = 'curvefit', # {‘loglin’, ‘curvefit’}, optional
 							fitmode  = 'all', # {‘all’, ‘ts’}, optional
 							combmode = 't2s'  # ‘t2s’ (Posse 1999), ‘paid’ (Poser)
 						)
-
-def rename_t2smap(folder):
-    for filename in os.listdir(folder):
-        os.makedirs(folder + "/renamed", exist_ok=True)
-        old_path = os.path.join(folder, filename)
-        new_path = os.path.join(folder + "/renamed", filename)
-        name = os.path.basename(filename)
-
-        if "desc-optcom" in name:
-            shutil.copy(old_path, new_path)
-            if "sbref" in name:
-                idx = name.index("sbref") + len("sbref")
-                new_name = name[:idx] + ".nii.gz"
-                new_dir = os.path.join(folder + "/renamed", new_name)
-                print(f"Renaming: {filename} → {new_name}")
-                os.rename(new_path, new_dir)
-
-            # For remaining "desc-optcom_"
-            else:
-                idx = name.index("_desc")
-                new_name = name[:idx] + "_bold.nii.gz"
-                new_dir = os.path.join(folder + "/renamed", new_name)
-                print(f"Renaming: {filename} → {new_name}")
-                os.rename(new_path, new_dir)
 
 if __name__ == "__main__":
-    subID, sesID, task, homePath = int(sys.argv[1]), int(sys.argv[2]), sys.argv[3], sys.argv[4]
-    optimal_combo(subID, sesID, task, homePath)
-    rename_t2smap(homePath)
+	parser = argparse.ArgumentParser()
+	parser.add_argument("subID",  type=int)
+	parser.add_argument("sesID",  type=int)
+	parser.add_argument("task")
+	parser.add_argument("homePath")
+	parser.add_argument("me_acqIDs", nargs="+")
+	args = parser.parse_args()
+
+	optimal_combo(
+		args.subID,
+		args.sesID,
+		args.task,
+		args.homePath,
+		args.me_acqIDs
+	)

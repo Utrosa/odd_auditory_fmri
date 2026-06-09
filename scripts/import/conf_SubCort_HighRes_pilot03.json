@@ -1,0 +1,286 @@
+{
+    "descriptions": [
+
+        {
+            "datatype": "anat",
+            "suffix": "T1w",
+            "criteria": {
+                "SeriesDescription": "t1_mprage_sag_p2_1iso_MGH",
+                "EchoTime": 0.00236
+            },
+            "sidecar_changes": {
+                "PulseSequenceName": "*tfl3d1_176ns"
+            }
+        },
+
+        {
+            "datatype": "anat",
+            "suffix": "MP2RAGE",
+            "custom_entities": "inv-1",
+            "criteria": {
+                "SeriesDescription": "t1_mp2rage_sag_p3_1iso_INV1",
+                "EchoTime": 0.00298
+            },
+            "sidecar_changes": {
+                "RepetitionTimePreparation": 5,
+                "RepetitionTimeExcitation": 5,
+                "InversionTime": 0.7,
+                "NumberShots": 1,
+                "PulseSequenceName": "*tfl3d1_176ns"
+            }
+        },
+
+        {
+            "datatype": "anat",
+            "suffix": "MP2RAGE",
+            "custom_entities": "inv-2",
+            "criteria": {
+                "SeriesDescription": "t1_mp2rage_sag_p3_1iso_INV2",
+                "EchoTime": 0.00298
+            },
+            "sidecar_changes": {
+                "RepetitionTimePreparation": 5,
+                "RepetitionTimeExcitation": 5,
+                "InversionTime": 2.5,     
+                "NumberShots": 1,
+                "PulseSequenceName": "*tfl3d1_176ns"
+            }
+        },
+
+        {
+            "datatype": "anat",
+            "suffix": "UNIT1",
+            "criteria": {
+                "SeriesDescription": "t1_mp2rage_sag_p3_1iso_UNI_Images",
+                "EchoTime": 0.00298
+            },
+            "sidecar_changes": {
+                "PulseSequenceName": "*tfl3d1_176ns"
+            }
+        },
+
+        {
+            "id": "id_task-localizer_acq-PF78",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-PF78",
+            "criteria": {
+                "SeriesDescription": "Dresden_1.75mm_SMS1_TR1400_PF78_wFatSat"
+            },
+            "sidecar_changes": {
+                "TaskName": "localizer",
+                "PulseSequenceName": "epfid2d1_88",
+                "InstitutionalDepartmentName": "BCBL"
+            }
+        },
+
+        {
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-PF78_part-phase",
+            "criteria": {
+                "SeriesDescription": "Dresden_1.75mm_SMS1_TR1400_PF78_wFatSat_Pha"
+            },
+            "sidecar_changes": {
+                "Units": "rad",
+                "TaskName": "localizer",
+                "IntendedFor": "id_task-localizer_acq-PF78",
+                "PulseSequenceName": "epfid2d1_88",
+                "InstitutionalDepartmentName": "BCBL"
+            }
+        },
+
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-PF78_dir-AP",
+            "criteria": {
+                "SeriesDescription": "SE_fmap_Dresden_1.75mm_SMS1_TR1400_PF78_wFatSat"
+            },
+            "sidecar_changes": {
+                "IntendedFor": "id_task-localizer_acq-PF78",
+                "PulseSequenceName": "epse2d1_88",
+                "InstitutionalDepartmentName": "BCBL"
+            }
+        },
+        
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-PF78_dir-PA",
+            "criteria": {
+                "SeriesDescription": "SE_ifmap_Dresden_1.75mm_SMS1_TR1400_PF78_wFatSat"
+            },
+            "sidecar_changes": {
+                "IntendedFor": "id_task-localizer_acq-PF78",
+                "PulseSequenceName": "epse2d1_88",
+                "InstitutionalDepartmentName": "BCBL"
+            }
+        },
+
+        {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-PF78",
+            "criteria": {
+                "SeriesDescription": "FH_Dresden_1.75mm_SMS1_TR1400_PF78_wFatSat"
+            },
+            "sidecar_changes": {
+                "IntendedFor": "id_task-localizer_acq-PF78",
+                "TaskName": "localizer",
+                "PulseSequenceName": "epfid2d1_88",
+                "InstitutionalDepartmentName": "BCBL"
+            }
+        },
+
+        {
+            "id": "id_task-localizer_acq-NOACC",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-NOACC",
+            "criteria": {
+                "SeriesDescription": "Dresden_1.75mm_SMS1_TR1500_wFatSat"
+            },
+            "sidecar_changes": {
+                "TaskName": "localizer",
+                "PulseSequenceName": "epfid2d1_88",
+                "InstitutionalDepartmentName": "BCBL"
+
+            }
+        },
+
+        {
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-NOACC_part-phase",
+            "criteria": {
+                "SeriesDescription": "Dresden_1.75mm_SMS1_TR1500_wFatSat_Pha"
+            },
+            "sidecar_changes": {
+                "Units": "rad",
+                "TaskName": "localizer",
+                "PulseSequenceName": "epfid2d1_88",
+                "InstitutionalDepartmentName": "BCBL",
+                "IntendedFor": "id_task-localizer_acq-NOACC"
+            }
+        },
+
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-NOACC_dir-AP",
+            "criteria": {
+                "SeriesDescription": "SE_fmap_Dresden_1.75mm_SMS1_TR1500_wFatSat"
+            },
+            "sidecar_changes": {
+                "IntendedFor": "id_task-localizer_acq-NOACC",
+                "PulseSequenceName": "epse2d1_88",
+                "InstitutionalDepartmentName": "BCBL"
+            }
+        },
+
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-NOACC_dir-PA",
+            "criteria": {
+                "SeriesDescription": "SE_ifmap_Dresden_1.75mm_SMS1_TR1500_wFatSat"
+            },
+            "sidecar_changes": {
+                "IntendedFor": "id_task-localizer_acq-NOACC",
+                "PulseSequenceName": "epse2d1_88",
+                "InstitutionalDepartmentName": "BCBL"
+            }
+        },
+
+        {
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-NOACC",
+            "criteria": {
+                "SeriesDescription": "FH_Dresden_1.75mm_SMS1_TR1500_wFatSat"
+            },
+            "sidecar_changes": {
+                "IntendedFor": "id_task-localizer_acq-NOACC",
+                "TaskName": "localizer",
+                "PulseSequenceName": "epfid2d1_88",
+                "InstitutionalDepartmentName": "BCBL"
+            }
+        },
+
+        {
+            "id": "id_task-localizer_acq-GRAPPA",
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-GRAPPA",
+            "criteria": {
+                "SeriesDescription": "Dresden_1.75mm_SMS1_TR1150_wFatSat"
+            },
+            "sidecar_changes": {
+                "TaskName": "localizer",
+                "PulseSequenceName": "epfid2d1_88",
+                "InstitutionalDepartmentName": "BCBL"
+            }
+        },
+
+        {
+            "datatype": "func",
+            "suffix": "bold",
+            "custom_entities": "task-localizer_acq-GRAPPA_part-phase",
+            "criteria": {
+                "SeriesDescription": "Dresden_1.75mm_SMS1_TR1150_wFatSat_Pha"
+            },
+            "sidecar_changes": {
+                "Units": "rad",
+                "TaskName": "localizer",
+                "IntendedFor": "id_task-localizer_acq-GRAPPA",
+                "PulseSequenceName": "epfid2d1_88",
+                "InstitutionalDepartmentName": "BCBL"
+            }
+        },
+
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-GRAPPA_dir-AP",
+            "criteria": {
+                "SeriesDescription": "SE_fmap_Dresden_1.75mm_SMS1_TR1150_wFatSat"
+            },
+            "sidecar_changes": {
+                "IntendedFor": "id_task-localizer_acq-GRAPPA",
+                "PulseSequenceName": "epse2d1_88",
+                "InstitutionalDepartmentName": "BCBL"
+            }
+        },
+
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "acq-GRAPPA_dir-PA",
+            "criteria": {
+                "SeriesDescription": "SE_ifmap_Dresden_1.75mm_SMS1_TR1150_wFatSat"
+            },
+            "sidecar_changes": {
+                "IntendedFor": "id_task-localizer_acq-GRAPPA",
+                "PulseSequenceName": "epse2d1_88",
+                "InstitutionalDepartmentName": "BCBL"
+            }            
+        },
+
+        {   
+            "id": "sbref_task-localizer_acq-GRAPPA",
+            "datatype": "func",
+            "suffix": "sbref",
+            "custom_entities": "task-localizer_acq-GRAPPA",
+            "criteria": {
+                "SeriesDescription": "FH_Dresden_1.75mm_SMS1_TR1150_wFatSat"
+            },
+            "sidecar_changes": {
+                "IntendedFor": "id_task-localizer_acq-GRAPPA",
+                "TaskName": "localizer",
+                "PulseSequenceName": "epfid2d1_88",
+                "InstitutionalDepartmentName": "BCBL"
+            }
+        }
+    ]    
+}
